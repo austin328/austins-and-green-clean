@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Austin's Green and Clean - Premium Lawn Care & Hygienic Bin Cleaning</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fdfb; /* Even lighter, fresher green background */
+            color: #3b3b3b; /* Slightly softer dark text color */
+        }
+        .header-bg {
+            background-color: #0b5025; /* Deeper, richer forest green */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+        }
+        .hero-section {
+            /* Now using a clean, vibrant green as the base for the hero */
+            background-image: url('https://placehold.co/1920x800/17b960/17b960'); /* Brighter green */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            min-height: 80vh; /* Slightly taller hero for more prominence */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0; /* Add top/bottom padding for content spacing */
+        }
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.55); /* Slightly less opaque overlay for subtle background hint */
+            position: absolute;
+            inset: 0;
+        }
+        .btn-primary {
+            @apply bg-lime-500 hover:bg-lime-600 text-white font-bold py-4 px-10 rounded-full transition duration-300 ease-in-out shadow-xl text-xl tracking-wide transform hover:scale-105; /* Larger, bolder button */
+        }
+        .section-title {
+            @apply text-5xl md:text-6xl font-extrabold text-green-900 mb-16 text-center relative flex flex-col items-center; /* Added flex flex-col items-center for centering underline */
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px; /* Wider underline */
+            height: 5px; /* Thicker underline */
+            background-color: #6ed045; /* A vibrant lime green line */
+            margin-top: 20px; /* More spacing below title, aligned by items-center */
+            border-radius: 3px;
+        }
+        .service-card {
+            @apply bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition duration-500 ease-in-out flex flex-col items-center text-center border-b-8 border-lime-400; /* More padding, thicker border */
+        }
+        .contact-card {
+            @apply bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition duration-500 ease-in-out flex flex-col items-center text-center border-b-8 border-lime-400; /* More padding, thicker border */
+        }
+        .input-field {
+            @apply shadow-md appearance-none border border-gray-300 rounded-lg w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:ring-3 focus:ring-lime-300 focus:border-lime-500; /* Enhanced focus state */
+        }
+        .textarea-field {
+            @apply shadow-md appearance-none border border-gray-300 rounded-lg w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:ring-3 focus:ring-lime-300 focus:border-lime-500; /* Enhanced focus state */
+        }
+        /* Custom scroll-to-top button */
+        #scrollToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 40px; /* Slightly higher */
+            right: 40px; /* Slightly more inward */
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #17b960; /* Matches hero background green */
+            color: white;
+            cursor: pointer;
+            padding: 18px; /* Larger button */
+            border-radius: 50%;
+            font-size: 28px; /* Larger icon */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3); /* More prominent shadow */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        #scrollToTopBtn:hover {
+            background-color: #14a055; /* Slightly darker on hover */
+            transform: translateY(-5px) scale(1.05); /* More pronounced lift effect */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+        }
+
+        /* Ensuring consistent list item alignment */
+        .service-card ul li {
+            display: flex;
+            align-items: flex-start;
+        }
+        .service-card ul li svg {
+            margin-top: 6px; /* Adjust icon vertical position for better visual alignment */
+            flex-shrink: 0;
+            color: #17b960; /* Make checkmarks the hero green color */
+        }
+
+        /* Additional enhancements */
+        .container {
+            max-width: 1200px; /* Increase max width for content */
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #166534, #4CAF50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Style for the language dropdown */
+        .language-switcher select {
+            background-color: #0d6e2e; /* Slightly lighter green than header */
+            color: white;
+            border: 1px solid #1a8a43;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            appearance: none; /* Remove default arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%20viewBox%3D%220%200%20292.4%20292.4%22%3E%3Cpath%20fill%3D%22white%22%20d%3D%22M287%20172.9H5.4c-6.8%200-10.3-7.9-5.1-13l140.7-140.7c2.7-2.7%207.2-2.7%209.9%200L292.1%20159.9c5.1%205.2%201.7%2013-5.1%2013z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+            background-repeat: no-repeat;
+            background-position: right 0.7em top 50%, 0 0;
+            background-size: 0.65em auto, 100%;
+        }
+        .language-switcher select:hover {
+            background-color: #1a8a43;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Section -->
+    <header class="header-bg py-5 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center px-8">
+            <a href="#home" class="text-white text-3xl md:text-4xl font-extrabold tracking-wide drop-shadow-sm" id="headerTitle">Austin's Green & Clean</a>
+            <nav class="hidden md:flex items-center space-x-10">
+                <a href="#home" class="text-white hover:text-lime-300 text-xl font-medium transition duration-300 ease-in-out" id="navHome">Home</a>
+                <a href="#services" class="text-white hover:text-lime-300 text-xl font-medium transition duration-300 ease-in-out" id="navServices">Services</a>
+                <a href="#about" class="text-white hover:text-lime-300 text-xl font-medium transition duration-300 ease-in-out" id="navAbout">About Us</a>
+                <a href="#benefits" class="text-white hover:text-lime-300 text-xl font-medium transition duration-300 ease-in-out" id="navBenefits">Why Choose Us</a>
+                <a href="#contact" class="text-white hover:text-lime-300 text-xl font-medium transition duration-300 ease-in-out" id="navContact">Contact</a>
+                <!-- Language Switcher for Desktop -->
+                <div class="language-switcher">
+                    <select id="language-select" onchange="changeLanguage()">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                        <option value="hi">हिन्दी</option>
+                    </select>
+                </div>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none" aria-label="Open mobile menu">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation (hidden by default, shown by JS) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-green-800 py-4 text-center">
+        <a href="#home" class="block text-white py-3 text-xl hover:bg-green-700 transition duration-300 ease-in-out" onclick="toggleMobileMenu()" id="mobileNavHome">Home</a>
+        <a href="#services" class="block text-white py-3 text-xl hover:bg-green-700 transition duration-300 ease-in-out" onclick="toggleMobileMenu()" id="mobileNavServices">Services</a>
+        <a href="#about" class="block text-white py-3 text-xl hover:bg-green-700 transition duration-300 ease-in-out" onclick="toggleMobileMenu()" id="mobileNavAbout">About Us</a>
+        <a href="#benefits" class="block text-white py-3 text-xl hover:bg-green-700 transition duration-300 ease-in-out" onclick="toggleMobileMenu()" id="mobileNavBenefits">Why Choose Us</a>
+        <a href="#contact" class="block text-white py-3 text-xl hover:bg-green-700 transition duration-300 ease-in-out" onclick="toggleMobileMenu()" id="mobileNavContact">Contact</a>
+        <!-- Language Switcher for Mobile -->
+        <div class="language-switcher mt-4">
+            <select id="mobile-language-select" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="hi">हिन्दी</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-white relative">
+        <div class="hero-overlay"></div>
+        <div class="container mx-auto text-center z-10 px-6 py-24">
+            <h1 class="text-7xl md:text-8xl font-extrabold leading-tight mb-8 drop-shadow-lg" id="heroHeading">
+                Austin's Green & Clean
+            </h1>
+            <p class="text-xl md:text-3xl font-light mb-16 opacity-95 drop-shadow-md" id="heroSubheading">
+                Uncompromising Quality for Your Lawn and Unbeatable Freshness for Your Bins in Leander, TX.
+            </p>
+            <a href="#contact" class="btn-primary" id="heroCtaButton">Get Your Free, No-Obligation Quote Today!</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 md:py-40 bg-f8fdfb">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-gradient" id="servicesTitle">Our Specialized Services</h2>
+            <p class="text-xl text-gray-700 mb-20 max-w-5xl mx-auto text-center leading-relaxed" id="servicesIntro">
+                We combine meticulous attention to detail with efficient processes and top-tier equipment to deliver outstanding, visible results for your home's exterior and hygiene. Choose the services that best fit your needs:
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Lawn Care Service Card -->
+                <div class="service-card">
+                    <img src="https://placehold.co/130x130/4CAF50/ffffff?text=Lawn" alt="Lawn Care Icon" class="w-32 h-32 mb-10 rounded-full bg-green-100 p-5 shadow-lg">
+                    <h3 class="text-4xl font-bold text-gray-800 mb-6" id="lawnCareHeading">Exceptional Lawn Mowing & Maintenance</h3>
+                    <p class="text-lg text-gray-700 mb-10 leading-relaxed" id="lawnCareIntro">
+                        Achieve a consistently beautiful and healthy lawn without lifting a finger. While you may have your own equipment like a weed wacker or lawn mower, our expert mowing and maintenance services save you valuable time and effort. Pricing depends on the size of your yard, and our services are tailored to the unique needs of your grass, promoting vibrant growth and a pristine appearance that enhances your home's curb appeal.
+                    </p>
+                    <ul class="text-left text-gray-700 space-y-4 text-lg w-full px-4 md:px-8">
+                        <li class="flex items-start"><svg class="w-7 h-7 mr-3 mt-1 text-lime-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="font-semibold" id="lawnCare1Title">Precision Mowing:</span> <span id="lawnCare1Desc">Expert cutting at the optimal height for grass health and aesthetics, ensuring a manicured look and promoting denser, greener growth.</span></li>
+                        <li class="flex items-start"><svg class="w-7 h-7 mr-3 mt-1 text-lime-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="font-semibold" id="lawnCare2Title">Crisp Edging & Trimming:</span> <span id="lawnCare2Desc">Defined, sharp edges along sidewalks, driveways, and garden beds, complemented by careful trimming around all obstacles for a truly neat finish.</span></li>
+                        <li class="flex items-start"><svg class="w-7 h-7 mr-3 mt-1 text-lime-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="font-semibold" id="lawnCare3Title">Debris Blowing & Cleanup:</span> <span id="lawnCare3Desc">A meticulous final sweep that thoroughly clears all grass clippings, leaves, and light debris from hard surfaces, leaving your entire property spotless and ready to enjoy.</span></li>
+                        <li class="flex items-start"><svg class="w-7 h-7 mr-3 mt-1 text-lime-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="font-semibold" id="lawnCare4Title">Seasonal Services Available:</span> <span id="lawnCare4Desc">Beyond regular mowing, ask us about our specialized seasonal offerings tailored to prepare your lawn for every Texas season, ensuring year-round beauty and health.</span></li>
+                    </ul>
+                </div>
+
+                <!-- Trash Bin Cleaning Service Card -->
+                <div class="service-card">
+                    <img src="https://placehold.co/130x130/007BFF/ffffff?text=Bin+Clean" alt="Trash Bin Cleaning Icon" class="w-32 h-32 mb-10 rounded-full bg-blue-100 p-5 shadow-lg">
+                    <h3 class="text-4xl font-bold text-gray-800 mb-6" id="binCleaningHeading">Professional Trash Bin Cleaning & Sanitization</h3>
+                    <p class="text-lg text-gray-700 mb-10 leading-relaxed" id="binCleaningIntro">
+                        Say goodbye to the unsanitary and foul-smelling nightmare of dirty trash bins. Our cutting-edge, mobile cleaning process eliminates odors, harmful bacteria, and unwelcome pests, transforming your bins into fresh, hygienic containers that contribute to a healthier home environment. Each bin is cleaned for just **$20 per can**. While you may own a pressure washer, our specialized 200-degree hot water system ensures a level of sanitation beyond typical home equipment.
+                    </p>
+                    <ul class="text-left text-gray-700 space-y-4 text-lg w-full px-4 md:px-8">
+                        <li class="flex items-start"><svg class="w-7 h-7 mr-3 mt-1 text-lime-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="font-semibold" id="binCleaning1Title">Deep Pressure Washing:</span> <span id="binCleaning1Desc">Utilizing specialized 200-degree hot water and powerful high-pressure jets, we thoroughly blast away even the toughest grime, caked-on residue, and sticky messes from every interior and exterior surface.</span></li>
+                        <li class="flex items-start"><svg class="w-7 h-7 mr-3 mt-1 text-lime-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="font-semibold" id="binCleaning2Title">Odor Neutralization:</span> <span id="binCleaning2Desc">Our advanced, eco-friendly cleaning solutions don't just mask unpleasant odors; they eliminate the root causes, leaving your bins smelling genuinely fresh and remarkably clean.</span></li>
+                        <li class="flex items-start"><svg class="w-7 h-7 mr-3 mt-1 text-lime-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="font-semibold" id="binCleaning3Title">Germ & Bacteria Elimination:</span> <span id="binCleaning3Desc">The combination of high temperatures and powerful disinfectants effectively kills 99.9% of common bacteria, viruses, and mold, creating a safer and more hygienic environment around your home.</span></li>
+                        <li class="flex items-start"><svg class="w-7 h-7 mr-3 mt-1 text-lime-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="font-semibold" id="binCleaning4Title">Eco-Friendly & Contained:</span> <span id="binCleaning4Desc">Our specialized cleaning truck captures all wastewater and debris, preventing harmful runoff into storm drains and ensuring an environmentally responsible and compliant cleaning process.</span></li>
+                        <li class="flex items-start"><svg class="w-7 h-7 mr-3 mt-1 text-lime-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="font-semibold" id="binCleaning5Title">Flexible Scheduling Options:</span> <span id="binCleaning5Desc">Choose from convenient one-time deep cleans for a quick refresh, or set up recurring monthly or bi-monthly services for consistent hygiene with absolutely zero hassle on your part.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section (New Section) -->
+    <section id="benefits" class="py-24 md:py-40 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title text-gradient" id="whyChooseUsTitle">Why Austin's Green & Clean is Your Best Choice</h2>
+            <p class="text-xl text-gray-700 mb-20 max-w-5xl mx-auto text-center leading-relaxed" id="whyChooseUsIntro">
+                When you choose Austin's Green & Clean, you're not just getting a service; you're investing in quality, unwavering reliability, and ultimate peace of mind. Here's what truly sets us apart:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+                <div class="card p-8 border-b-8 border-lime-400 rounded-3xl shadow-xl">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4" id="benefit1Title">Unmatched Local Expertise</h3>
+                    <p class="text-lg text-gray-700" id="benefit1Desc">
+                        Proudly serving homeowners and businesses right here in Leander, TX, and our neighboring communities. We possess a deep understanding of local lawn care needs and hygiene standards, providing uniquely tailored solutions that thrive in our specific climate.
+                    </p>
+                </div>
+                <div class="card p-8 border-b-8 border-lime-400 rounded-3xl shadow-xl">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4" id="benefit2Title">Guaranteed Quality & Meticulous Detail</h3>
+                    <p class="text-lg text-gray-700" id="benefit2Desc">
+                        Our commitment is to absolute perfection. Every single lawn mowing session and trash bin cleaning is executed with an unparalleled attention to detail, ensuring a consistently high standard of visible excellence that you will immediately appreciate and trust.
+                    </p>
+                </div>
+                <div class="card p-8 border-b-8 border-lime-400 rounded-3xl shadow-xl">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4" id="benefit3Title">Environmentally Responsible Practices</h3>
+                    <p class="text-lg text-gray-700" id="benefit3Desc">
+                        We place the highest priority on your family's safety and the planet's well-being. Our cleaning solutions are meticulously chosen to be fully biodegradable, and all our operational methods are expertly designed to be eco-friendly, rigorously preventing harmful runoff.
+                    </p>
+                </div>
+                <div class="card p-8 border-b-8 border-lime-400 rounded-3xl shadow-xl">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4" id="benefit4Title">Customer-Centric Service Excellence</h3>
+                    <p class="text-lg text-gray-700" id="benefit4Desc">
+                        Your complete satisfaction isn't just a goal; it's our foundational promise. We attentively listen to your specific needs, communicate clearly and proactively, and consistently go the extra mile to ensure you are absolutely delighted with every single result we deliver.
+                    </p>
+                </div>
+                <div class="card p-8 border-b-8 border-lime-400 rounded-3xl shadow-xl">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4" id="benefit5Title">Transparent & Fair Pricing Policy</h3>
+                    <p class="text-lg text-gray-700" id="benefit5Desc">
+                        Experience premium quality lawn care and bin cleaning services without the premium price tag. We offer clear, straightforward, and competitive rates with absolutely no hidden fees, providing exceptional value for your hard-earned investment in a beautiful and hygienic home.
+                    </p>
+                </div>
+                <div class="card p-8 border-b-8 border-lime-400 rounded-3xl shadow-xl">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4" id="benefit6Title">Unparalleled Convenience & Peace of Mind</h3>
+                    <p class="text-lg text-gray-700" id="benefit6Desc">
+                        Reclaim your valuable time and energy! We expertly handle all the dirty work and outdoor maintenance so you don't have to, offering highly flexible scheduling options and consistently reliable service that effortlessly frees up your demanding schedule.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-24 md:py-40 bg-f8fdfb">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title text-gradient" id="aboutUsTitle">About Austin's Green & Clean</h2>
+            <div class="max-w-4xl mx-auto leading-relaxed text-lg text-gray-700">
+                <p class="mb-6" id="aboutUsParagraph1">
+                    Hi, I'm Austin! As the proud owner of Austin's Green & Clean, I've built this business on a foundation of unwavering reliability, meticulous attention to every detail, and a genuine passion for creating cleaner, greener spaces right here in **Leander, TX and the surrounding communities**. My ultimate goal is to provide far more than just services – I aim to deliver absolute peace of mind and visibly refreshing results that you'll genuinely appreciate, actively contributing to the beauty, health, and vitality of our local community.
+                </p>
+                <p class="mb-6" id="aboutUsParagraph2">
+                    Whether it's ensuring your lawn stays impeccably maintained, vibrant, and healthy through every changing season with our precision mowing techniques, or completely eliminating stubborn odors, unsightly grime, and harmful bacteria from your trash and recycling bins, I approach every single task with the utmost professionalism and an unwavering commitment to excellence. I exclusively use highly effective, state-of-the-art equipment and genuinely eco-conscious methods, because I believe it's paramount to care for your property with the utmost respect while also diligently protecting the precious environment we all share.
+                </p>
+                <p id="aboutUsParagraph3">
+                    Your complete satisfaction isn't just a fleeting objective; it's the singular driving force behind every service I diligently offer. I strive relentlessly to build enduring, trusting relationships with all my cherished clients by consistently providing high-quality work that effortlessly makes your life easier, your home undeniably more inviting, and your immediate environment significantly healthier. Experience the truly transformative Austin's Green & Clean difference – where top-tier, reliable service meets a dedicated, personal touch that you can count on.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-20 bg-gradient-to-r from-lime-600 to-green-700 text-white text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-6" id="ctaHeading">Ready for a Truly Clean & Green Space?</h2>
+            <p class="text-xl md:text-2xl mb-10 opacity-90" id="ctaSubheading">Let Austin's Green & Clean handle the dirty work. Get your free personalized quote today!</p>
+            <a href="#contact" class="btn-primary bg-white text-green-700 hover:bg-gray-100" id="ctaButton">Request Your Free Quote!</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 md:py-40 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title text-gradient" id="contactTitle">Connect With Us</h2>
+            <p class="text-xl text-gray-700 mb-20 max-w-5xl mx-auto" id="contactIntro">
+                Have questions, need a detailed service estimate, or ready to schedule your first service? Reach out to Austin's Green & Clean through your preferred method. We are excited to hear from you and transform your property!
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-4xl mx-auto">
+                <!-- Phone Contact -->
+                <div class="contact-card">
+                    <!-- Updated Phone SVG Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="w-20 h-20 text-lime-600 mb-8">
+                      <path d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.2-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 42.9c-54.8 30.2-114.6 50.6-174.9 59.3L167 245.9c-7.1-3.6-15.5-3.6-22.6 0l-48 24c-11.3 5.6-17.9 17.5-17.9 29.8v104c0 13.3 10.7 24 24 24h.5c6.5 0 12.8-2.6 17.3-7.1l114.8-114.8c4.5-4.5 4.5-11.8 0-16.3L289 276.4c-4.5-4.5-11.8-4.5-16.3 0l-114.8 114.8c-4.5 4.5-11.8 4.5-16.3 0L24.6 493.4c-9.6 9.6-9.6 25.1 0 34.7l24 24c4.7 4.7 11.2 7.3 17.7 7.3h104c11.3 0 22.9-3.2 27.5-13.9l48-112c4.2-9.8 1.4-21.3-6.9-28L186.4 319c54.8-30.2 114.6-50.6 174.9-59.3L345 236.1c7.1 3.6 15.5 3.6 22.6 0l48-24c11.3-5.6 17.9-17.5 17.9-29.8V80c0-13.3-10.7-24-24-24z"/>
+                    </svg>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4" id="phoneContactHeading">Call Us Directly</h3>
+                    <p class="text-xl text-gray-600 mb-6" id="phoneContactDesc">Reach out to Austin for immediate assistance or to discuss your specific needs.</p>
+                    <a href="tel:5128107933" class="text-lime-600 hover:underline text-3xl font-bold">512-810-7933</a>
+                </div>
+
+                <!-- Email Contact -->
+                <div class="contact-card">
+                    <!-- Updated Email SVG Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="w-20 h-20 text-lime-600 mb-8">
+                      <path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.803l-192 128-192-128V112h384zm-24.603 29.28l-192 128-192-128c-.056-.037-.113-.07-.17-.107L384 288v96h64V212.8L288 340.8 128 238.2V304h-64V112h-.001L48 112v288l.001.001L48 400h416V112z"/>
+                    </svg>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4" id="emailContactHeading">Send Us An Email</h3>
+                    <p class="text-xl text-gray-600 mb-6" id="emailContactDesc">For detailed inquiries or written quotes, send us an email. We typically respond within 24 hours.</p>
+                    <a href="mailto:austinreedlewis@icloud.com" class="text-lime-600 hover:underline text-xl font-bold">austinreedlewis@icloud.com</a>
+                </div>
+            </div>
+            <!-- Simple contact form placeholder -->
+            <div class="mt-24 p-12 bg-white rounded-3xl shadow-xl max-w-3xl mx-auto border-t-8 border-green-700">
+                <h3 class="text-3xl font-bold text-gray-800 mb-10 text-center" id="formHeading">Request Your Free Quote Online!</h3>
+                <form class="space-y-8">
+                    <div>
+                        <label for="name-form" class="block text-gray-700 text-left text-base font-semibold mb-3" id="formLabelName">Your Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="name-form" class="input-field" placeholder="Your Full Name" required>
+                    </div>
+                    <div>
+                        <label for="email-form" class="block text-gray-700 text-left text-base font-semibold mb-3" id="formLabelEmail">Your Email <span class="text-red-500">*</span></label>
+                        <input type="email" id="email-form" class="input-field" placeholder="your@example.com" required>
+                    </div>
+                    <div>
+                        <label for="phone-form" class="block text-gray-700 text-left text-base font-semibold mb-3" id="formLabelPhone">Phone Number (Optional, but recommended for quick quotes)</label>
+                        <input type="tel" id="phone-form" class="input-field" placeholder="e.g., 555-123-4567">
+                    </div>
+                     <div>
+                        <label for="service-interest" class="block text-gray-700 text-left text-base font-semibold mb-3" id="formLabelService">Service(s) You're Interested In</label>
+                        <select id="service-interest" class="input-field">
+                            <option value="" id="selectServiceOption1">Select a service...</option>
+                            <option value="lawn-mowing" id="selectServiceOption2">Lawn Mowing & Maintenance</option>
+                            <option value="bin-cleaning" id="selectServiceOption3">Trash Bin Cleaning</option>
+                            <option value="both" id="selectServiceOption4">Both Lawn & Bin Services</option>
+                            <option value="other" id="selectServiceOption5">Other/Question</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message-form" class="block text-gray-700 text-left text-base font-semibold mb-3" id="formLabelMessage">Tell Us About Your Needs (Property Size, Bin Quantity, etc.) <span class="text-red-500">*</span></label>
+                        <textarea id="message-form" rows="7" class="textarea-field" placeholder="Please provide details about your property (e.g., lawn size, how many bins you need cleaned, preferred service frequency)..." required></textarea>
+                        <button type="button" id="aiSuggestButton" class="btn-primary mt-4 py-2 px-6 text-lg w-full">Help</button>
+                        <div id="aiSuggestionOutput" class="mt-4 p-4 bg-lime-50 rounded-lg text-gray-800 text-left shadow-inner hidden">
+                            <p class="font-semibold mb-2" id="aiSuggestionTitle">AI Suggestion:</p>
+                            <p id="aiSuggestionText"></p>
+                            <div id="aiLoadingIndicator" class="flex items-center justify-center hidden mt-2">
+                                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-lime-600"></div>
+                                <span class="ml-3 text-lime-600">Generating suggestion...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary w-full mt-6" id="formSubmitButton">Submit My Quote Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-12 text-center">
+        <div class="container mx-auto px-6">
+            <p class="text-lg mb-4" id="footerCopyright">&copy; 2025 Austin's Green & Clean. All rights reserved.</p>
+            <div class="flex justify-center space-x-8 text-xl">
+                <a href="tel:5128107933" class="hover:text-lime-400 transition duration-300 ease-in-out flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.2-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 42.9c-54.8 30.2-114.6 50.6-174.9 59.3L167 245.9c-7.1-3.6-15.5-3.6-22.6 0l-48 24c-11.3 5.6-17.9 17.5-17.9 29.8v104c0 13.3 10.7 24 24 24h.5c6.5 0 12.8-2.6 17.3-7.1l114.8-114.8c4.5-4.5 4.5-11.8 0-16.3L289 276.4c-4.5-4.5-11.8-4.5-16.3 0l-114.8 114.8c-4.5 4.5-11.8 4.5-16.3 0L24.6 493.4c-9.6 9.6-9.6 25.1 0 34.7l24 24c4.7 4.7 11.2 7.3 17.7 7.3h104c11.3 0 22.9-3.2 27.5-13.9l48-112c4.2-9.8 1.4-21.3-6.9-28L186.4 319c54.8-30.2 114.6-50.6 174.9-59.3L345 236.1c7.1 3.6 15.5 3.6 22.6 0l48-24c11.3-5.6 17.9-17.5 17.9-29.8V80c0-13.3-10.7-24-24-24z"/>
+                    </svg>
+                    <span id="footerPhone">512-810-7933</span>
+                </a>
+                <span class="text-gray-600">|</span>
+                <a href="mailto:austinreedlewis@icloud.com" class="hover:text-lime-400 transition duration-300 ease-in-out flex items-center">
+                     <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.803l-192 128-192-128V112h384zm-24.603 29.28l-192 128-192-128c-.056-.037-.113-.07-.17-.107L384 288v96h64V212.8L288 340.8 128 238.2V304h-64V112h-.001L48 112v288l.001.001L48 400h416V112z"/>
+                    </svg>
+                    <span id="footerEmail">austinreedlewis@icloud.com</span>
+                </a>
+            </div>
+            <p class="text-sm text-gray-500 mt-6" id="footerLocation">Proudly serving the Leander, TX area.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button onclick="topFunction()" id="scrollToTopBtn" title="Go to top">
+        &#8593;
+    </button>
+
+    <script>
+        // Language Translation Dictionary
+        const translations = {
+            en: {
+                pageTitle: "Austin's Green and Clean - Premium Lawn Care & Hygienic Bin Cleaning",
+                headerTitle: "Austin's Green & Clean",
+                navHome: "Home",
+                navServices: "Services",
+                navAbout: "About Us",
+                navBenefits: "Why Choose Us",
+                navContact: "Contact",
+                mobileNavHome: "Home",
+                mobileNavServices: "Services",
+                mobileNavAbout: "About Us",
+                mobileNavBenefits: "Why Choose Us",
+                mobileNavContact: "Contact",
+                heroHeading: "Austin's Green & Clean",
+                heroSubheading: "Uncompromising Quality for Your Lawn and Unbeatable Freshness for Your Bins in Leander, TX.",
+                heroCtaButton: "Get Your Free, No-Obligation Quote Today!",
+                servicesTitle: "Our Specialized Services",
+                servicesIntro: "We combine meticulous attention to detail with efficient processes and top-tier equipment to deliver outstanding, visible results for your home's exterior and hygiene. Choose the services that best fit your needs:",
+                lawnCareHeading: "Exceptional Lawn Mowing & Maintenance",
+                lawnCareIntro: "Achieve a consistently beautiful and healthy lawn without lifting a finger. While you may have your own equipment like a weed wacker or lawn mower, our expert mowing and maintenance services save you valuable time and effort. Pricing depends on the size of your yard, and our services are tailored to the unique needs of your grass, promoting vibrant growth and a pristine appearance that enhances your home's curb appeal.",
+                lawnCare1Title: "Precision Mowing:",
+                lawnCare1Desc: "Expert cutting at the optimal height for grass health and aesthetics, ensuring a manicured look and promoting denser, greener growth.",
+                lawnCare2Title: "Crisp Edging & Trimming:",
+                lawnCare2Desc: "Defined, sharp edges along sidewalks, driveways, and garden beds, complemented by careful trimming around all obstacles for a truly neat finish.",
+                lawnCare3Title: "Debris Blowing & Cleanup:",
+                lawnCare3Desc: "A meticulous final sweep that thoroughly clears all grass clippings, leaves, and light debris from hard surfaces, leaving your entire property spotless and ready to enjoy.",
+                lawnCare4Title: "Seasonal Services Available:",
+                lawnCare4Desc: "Beyond regular mowing, ask us about our specialized seasonal offerings tailored to prepare your lawn for every Texas season, ensuring year-round beauty and health.",
+                binCleaningHeading: "Professional Trash Bin Cleaning & Sanitization",
+                binCleaningIntro: "Say goodbye to the unsanitary and foul-smelling nightmare of dirty trash bins. Our cutting-edge, mobile cleaning process eliminates odors, harmful bacteria, and unwelcome pests, transforming your bins into fresh, hygienic containers that contribute to a healthier home environment. Each bin is cleaned for just **$20 per can**. While you may own a pressure washer, our specialized 200-degree hot water system ensures a level of sanitation beyond typical home equipment.",
+                binCleaning1Title: "Deep Pressure Washing:",
+                binCleaning1Desc: "Utilizing specialized 200-degree hot water and powerful high-pressure jets, we thoroughly blast away even the toughest grime, caked-on residue, and sticky messes from every interior and exterior surface.",
+                binCleaning2Title: "Odor Neutralization:",
+                binCleaning2Desc: "Our advanced, eco-friendly cleaning solutions don't just mask unpleasant odors; they eliminate the root causes, leaving your bins smelling genuinely fresh and remarkably clean.",
+                binCleaning3Title: "Germ & Bacteria Elimination:",
+                binCleaning3Desc: "The combination of high temperatures and powerful disinfectants effectively kills 99.9% of common bacteria, viruses, and mold, creating a safer and more hygienic environment around your home.",
+                binCleaning4Title: "Eco-Friendly & Contained:",
+                binCleaning4Desc: "Our specialized cleaning truck captures all wastewater and debris, preventing harmful runoff into storm drains and ensuring an environmentally responsible and compliant cleaning process.",
+                binCleaning5Title: "Flexible Scheduling Options:",
+                binCleaning5Desc: "Choose from convenient one-time deep cleans for a quick refresh, or set up recurring monthly or bi-monthly services for consistent hygiene with absolutely zero hassle on your part.",
+                whyChooseUsTitle: "Why Austin's Green & Clean is Your Best Choice",
+                whyChooseUsIntro: "When you choose Austin's Green & Clean, you're not just getting a service; you're investing in quality, unwavering reliability, and ultimate peace of mind. Here's what truly sets us apart:",
+                benefit1Title: "Unmatched Local Expertise",
+                benefit1Desc: "Proudly serving homeowners and businesses right here in Leander, TX, and our neighboring communities. We possess a deep understanding of local lawn care needs and hygiene standards, providing uniquely tailored solutions that thrive in our specific climate.",
+                benefit2Title: "Guaranteed Quality & Meticulous Detail",
+                benefit2Desc: "Our commitment is to absolute perfection. Every single lawn mowing session and trash bin cleaning is executed with an unparalleled attention to detail, ensuring a consistently high standard of visible excellence that you will immediately appreciate and trust.",
+                benefit3Title: "Environmentally Responsible Practices",
+                benefit3Desc: "We place the highest priority on your family's safety and the planet's well-being. Our cleaning solutions are meticulously chosen to be fully biodegradable, and all our operational methods are expertly designed to be eco-friendly, rigorously preventing harmful runoff.",
+                benefit4Title: "Customer-Centric Service Excellence",
+                benefit4Desc: "Your complete satisfaction isn't just a goal; it's our foundational promise. We attentively listen to your specific needs, communicate clearly and proactively, and consistently go the extra mile to ensure you are absolutely delighted with every single result we deliver.",
+                benefit5Title: "Transparent & Fair Pricing Policy",
+                benefit5Desc: "Experience premium quality lawn care and bin cleaning services without the premium price tag. We offer clear, straightforward, and competitive rates with absolutely no hidden fees, providing exceptional value for your hard-earned investment in a beautiful and hygienic home.",
+                benefit6Title: "Unparalleled Convenience & Peace of Mind",
+                benefit6Desc: "Reclaim your valuable time and energy! We expertly handle all the dirty work and outdoor maintenance so you don't have to, offering highly flexible scheduling options and consistently reliable service that effortlessly frees up your demanding schedule.",
+                aboutUsTitle: "About Austin's Green & Clean",
+                aboutUsParagraph1: "Hi, I'm Austin! As the proud owner of Austin's Green & Clean, I've built this business on a foundation of unwavering reliability, meticulous attention to every detail, and a genuine passion for creating cleaner, greener spaces right here in Leander, TX and the surrounding communities. My ultimate goal is to provide far more than just services – I aim to deliver absolute peace of mind and visibly refreshing results that you'll genuinely appreciate, actively contributing to the beauty, health, and vitality of our local community.",
+                aboutUsParagraph2: "Whether it's ensuring your lawn stays impeccably maintained, vibrant, and healthy through every changing season with our precision mowing techniques, or completely eliminating stubborn odors, unsightly grime, and harmful bacteria from your trash and recycling bins, I approach every single task with the utmost professionalism and an unwavering commitment to excellence. I exclusively use highly effective, state-of-the-art equipment and genuinely eco-conscious methods, because I believe it's paramount to care for your property with the utmost respect while also diligently protecting the precious environment we all share.",
+                aboutUsParagraph3: "Your complete satisfaction isn't just a fleeting objective; it's the singular driving force behind every service I diligently offer. I strive relentlessly to build enduring, trusting relationships with all my cherished clients by consistently providing high-quality work that effortlessly makes your life easier, your home undeniably more inviting, and your immediate environment significantly healthier. Experience the truly transformative Austin's Green & Clean difference – where top-tier, reliable service meets a dedicated, personal touch that you can count on.",
+                ctaHeading: "Ready for a Truly Clean & Green Space?",
+                ctaSubheading: "Let Austin's Green & Clean handle the dirty work. Get your free personalized quote today!",
+                ctaButton: "Request Your Free Quote!",
+                contactTitle: "Connect With Us",
+                contactIntro: "Have questions, need a detailed service estimate, or ready to schedule your first service? Reach out to Austin's Green & Clean through your preferred method. We are excited to hear from you and transform your property!",
+                phoneContactHeading: "Call Us Directly",
+                phoneContactDesc: "Reach out to Austin for immediate assistance or to discuss your specific needs.",
+                emailContactHeading: "Send Us An Email",
+                emailContactDesc: "For detailed inquiries or written quotes, send us an email. We typically respond within 24 hours.",
+                formHeading: "Request Your Free Quote Online!",
+                formLabelName: "Your Name",
+                formLabelEmail: "Your Email",
+                formLabelPhone: "Phone Number (Optional, but recommended for quick quotes)",
+                formLabelService: "Service(s) You're Interested In",
+                selectServiceOption1: "Select a service...",
+                selectServiceOption2: "Lawn Mowing & Maintenance",
+                selectServiceOption3: "Trash Bin Cleaning",
+                selectServiceOption4: "Both Lawn & Bin Services",
+                selectServiceOption5: "Other/Question",
+                formLabelMessage: "Tell Us About Your Needs (Property Size, Bin Quantity, etc.)",
+                formSubmitButton: "Submit My Quote Request",
+                footerCopyright: "&copy; 2025 Austin's Green & Clean. All rights reserved.",
+                footerPhone: "512-810-7933",
+                footerEmail: "austinreedlewis@icloud.com",
+                footerLocation: "Proudly serving the Leander, TX area.",
+                aiSuggestButton: "Help", // Updated text for the AI suggestion button
+                aiSuggestionTitle: "AI Suggestion:",
+                aiLoadingText: "Generating suggestion..."
+            },
+            es: {
+                pageTitle: "Austin's Green and Clean - Cuidado Premium de Césped y Limpieza Higiénica de Contenedores",
+                headerTitle: "Austin's Green & Clean",
+                navHome: "Inicio",
+                navServices: "Servicios",
+                navAbout: "Nosotros",
+                navBenefits: "¿Por Qué Elegirnos?",
+                navContact: "Contacto",
+                mobileNavHome: "Inicio",
+                mobileNavServices: "Servicios",
+                mobileNavAbout: "Nosotros",
+                mobileNavBenefits: "¿Por Qué Elegirnos?",
+                mobileNavContact: "Contacto",
+                heroHeading: "Austin's Green & Clean",
+                heroSubheading: "Calidad Inigualable para su Jardín y Frescura Imbatible para sus Contenedores en Leander, TX.",
+                heroCtaButton: "¡Obtenga su Presupuesto Gratuito y sin Compromiso Hoy!",
+                servicesTitle: "Nuestros Servicios Especializados",
+                servicesIntro: "Combinamos una atención meticulosa a los detalles con procesos eficientes y equipos de primera calidad para ofrecer resultados visibles y sobresalientes para el exterior y la higiene de su hogar. Elija los servicios que mejor se adapten a sus necesidades:",
+                lawnCareHeading: "Excepcional Mantenimiento y Corte de Césped",
+                lawnCareIntro: "Logre un césped consistentemente hermoso y saludable sin mover un dedo. Si bien es posible que tenga su propio equipo como un cortacésped o una desbrozadora, nuestros servicios expertos de corte y mantenimiento de césped le ahorrarán tiempo y esfuerzo valiosos. El precio depende del tamaño de su jardín, y nuestros servicios se adaptan a las necesidades únicas de su césped, promoviendo un crecimiento vibrante y una apariencia impecable que mejora el atractivo exterior de su hogar.",
+                lawnCare1Title: "Corte de Precisión:",
+                lawnCare1Desc: "Corte experto a la altura óptima para la salud y estética del césped, asegurando una apariencia impecable y promoviendo un crecimiento más denso y verde.",
+                lawnCare2Title: "Bordes y Recortes Perfectos:",
+                lawnCare2Desc: "Bordes definidos y afilados a lo largo de aceras, entradas de vehículos y jardines, complementados con recortes cuidadosos alrededor de todos los obstáculos para un acabado verdaderamente impecable.",
+                lawnCare3Title: "Limpieza y Recogida de Residuos:",
+                lawnCare3Desc: "Una barrida final meticulosa que limpia a fondo todos los recortes de césped, hojas y escombros ligeros de las superficies duras, dejando toda su propiedad impecable y lista para disfrutar.",
+                lawnCare4Title: "Servicios Estacionales Disponibles:",
+                lawnCare4Desc: "Más allá del corte regular, pregúntenos sobre nuestras ofertas estacionales especializadas adaptadas para preparar su césped para cada temporada de Texas, asegurando belleza y salud durante todo el año.",
+                binCleaningHeading: "Limpieza y Sanitización Profesional de Contenedores de Basura",
+                binCleaningIntro: "Diga adiós a la pesadilla insalubre y maloliente de los contenedores de basura sucios. Nuestro proceso de limpieza móvil de vanguardia elimina olores, bacterias dañinas y plagas no deseadas, transformando sus contenedores en recipientes frescos e higiénicos que contribuyen a un ambiente hogareño más saludable. Cada contenedor se limpia por solo **$20 por contenedor**. Si bien es posible que tenga su propia hidrolavadora, nuestro sistema especializado de agua caliente a 200 grados garantiza un nivel de saneamiento que va más allá de los equipos domésticos típicos.",
+                binCleaning1Title: "Lavado a Presión Profundo:",
+                binCleaning1Desc: "Utilizando agua caliente especializada a 200 grados y potentes chorros de alta presión, eliminamos a fondo incluso la suciedad más difícil, los residuos adheridos y los desordenes pegajosos de todas las superficies interiores y exteriores.",
+                binCleaning2Title: "Neutralización de Olores:",
+                binCleaning2Desc: "Nuestras soluciones de limpieza avanzadas y ecológicas no solo enmascaran los olores desagradables; eliminan las causas raíz, dejando sus contenedores con un olor genuinamente fresco y notablemente limpio.",
+                binCleaning3Title: "Eliminación de Gérmenes y Bacterías:",
+                binCleaning3Desc: "La combinación de altas temperaturas y potentes desinfectantes mata eficazmente el 99.9% de las bacterias, virus y moho comunes, creando un ambiente más seguro e higiénico alrededor de su hogar.",
+                binCleaning4Title: "Ecológico y Contenido:",
+                binCleaning4Desc: "Nuestro camión de limpieza especializado recolecta todas las aguas residuales y escombros, evitando la escorrentía dañina hacia los desagües pluviales y asegurando un proceso de limpieza ambientalmente responsable y conforme.",
+                binCleaning5Title: "Opciones de Programación Flexibles:",
+                binCleaning5Desc: "Elija entre limpiezas profundas únicas para un refresco rápido, o programe servicios mensuales o bimensuales recurrentes para una higiene constante sin ningún tipo de molestia por su parte.",
+                whyChooseUsTitle: "¿Por Qué Austin's Green & Clean es Su Mejor Opción?",
+                whyChooseUsIntro: "Cuando elige Austin's Green & Clean, no solo está obteniendo un servicio; está invirtiendo en calidad, confiabilidad inquebrantable y máxima tranquilidad. Esto es lo que realmente nos distingue:",
+                benefit1Title: "Experiencia Local Inigualable",
+                benefit1Desc: "Orgullosamente sirviendo a propietarios de viviendas y negocios aquí en Leander, TX, y nuestras comunidades vecinas. Poseemos un profundo conocimiento de las necesidades locales de cuidado del césped y los estándares de higiene, brindando soluciones adaptadas de manera única que prosperan en nuestro clima específico.",
+                benefit2Title: "Calidad Garantizada y Detalles Meticulosos",
+                benefit2Desc: "Nuestro compromiso es la perfección absoluta. Cada sesión de corte de césped y limpieza de contenedores de basura se ejecuta con una atención inigualable a los detalles, lo que garantiza un alto nivel constante de excelencia visible que apreciará y en la que confiará de inmediato.",
+                benefit3Title: "Prácticas Ambientalmente Responsables",
+                benefit3Desc: "Damos la máxima prioridad a la seguridad de su familia y al bienestar del planeta. Nuestras soluciones de limpieza se eligen meticulosamente para ser completamente biodegradables, y todos nuestros métodos operativos están diseñados por expertos para ser ecológicos, evitando rigurosamente la escorrentía dañina.",
+                benefit4Title: "Customer-Centric Service Excellence",
+                benefit4Desc: "Su completa satisfacción no es solo un objetivo; es nuestra promesa fundamental. Escuchamos atentamente sus necesidades específicas, nos comunicamos de manera clara y proactiva, y constantemente hacemos un esfuerzo adicional para asegurarnos de que esté absolutamente encantado con cada resultado que le brindamos.",
+                benefit5Title: "Transparente & Fair Pricing Policy",
+                benefit5Desc: "Experimente servicios de limpieza de contenedores y cuidado del césped de primera calidad sin el precio premium. Ofrecemos tarifas claras, directas y competitivas sin cargos ocultos, lo que proporciona un valor excepcional por su inversión en un hogar hermoso e higiénico.",
+                benefit6Title: "Conveniencia Inigualable y Tranquilidad",
+                benefit6Desc: "¡Recupere su valioso tiempo y energía! Nos encargamos expertamente de todo el trabajo sucio y el mantenimiento exterior para que usted no tenga que hacerlo, ofreciendo opciones de programación altamente flexibles y un servicio consistentemente confiable que libera sin esfuerzo su exigente agenda.",
+                aboutUsTitle: "Acerca de Austin's Green & Clean",
+                aboutUsParagraph1: "¡Hola, soy Austin! Como orgulloso propietario de Austin's Green & Clean, he construido este negocio sobre una base de confiabilidad inquebrantable, atención meticulosa a cada detalle y una pasión genuina por crear espacios más limpios y verdes aquí mismo en Leander, TX y las comunidades circundantes. Mi objetivo final es brindar mucho más que solo servicios: mi objetivo es ofrecer tranquilidad absoluta y resultados visiblemente refrescantes que realmente apreciará, contribuyendo activamente a la belleza, la salud y la vitalidad de nuestra comunidad local.",
+                aboutUsParagraph2: "Ya sea que se trate de garantizar que su césped se mantenga impecablemente mantenido, vibrante y saludable durante cada estación cambiante con nuestras técnicas de corte de precisión, o de eliminar por completo los olores persistentes, la suciedad antiestética y las bacterias dañinas de sus contenedores de basura y reciclaje, abordo cada tarea con la máxima profesionalidad y un compromiso inquebrantable con la excelencia. Utilizo exclusivamente equipos altamente efectivos y de última generación y métodos genuinamente ecológicos, porque creo que es fundamental cuidar su propiedad con el mayor respeto y proteger el precioso medio ambiente que todos compartimos.",
+                aboutUsParagraph3: "Su completa satisfacción no es solo un objetivo fugaz; es la fuerza impulsora singular detrás de cada servicio que ofrezco diligentemente. Me esfuerzo incansablemente por construir relaciones duraderas y de confianza con todos mis preciados clientes, brindando constantemente un trabajo de alta calidad que le facilita la vida sin esfuerzo, hace que su hogar sea indudablemente más acogedor y su entorno inmediato sea significativamente más saludable. Experimente la diferencia verdaderamente transformadora de Austin's Green & Clean, donde el servicio confiable de primer nivel se combina con un toque personal dedicado en el que puede confiar.",
+                ctaHeading: "¿Listo para un Espacio Verdaderamente Limpio y Verde?",
+                ctaSubheading: "Deje que Austin's Green & Clean se encargue del trabajo sucio. ¡Obtenga su presupuesto personalizado gratuito hoy!",
+                ctaButton: "¡Solicite su Presupuesto Gratuito!",
+                contactTitle: "Conéctese con Nosotros",
+                contactIntro: "¿Tiene preguntas, necesita un presupuesto de servicio detallado o está listo para programar su primer servicio? Comuníquese con Austin's Green & Clean a través de su método preferido. ¡Estamos emocionados de saber de usted y transformar su propiedad!",
+                phoneContactHeading: "Llámenos Directamente",
+                phoneContactDesc: "Comuníquese con Austin para obtener asistencia inmediata o para analizar sus necesidades específicas.",
+                emailContactHeading: "Envíenos un Correo Electrónico",
+                emailContactDesc: "Para consultas detalladas o presupuestos por escrito, envíenos un correo electrónico. Generalmente respondemos dentro de las 24 horas.",
+                formHeading: "¡Solicite su Presupuesto Gratuito en Línea!",
+                formLabelName: "Su Nombre",
+                formLabelEmail: "Su Correo Electrónico",
+                formLabelPhone: "Número de Teléfono (Opcional, pero recomendado para presupuestos rápidos)",
+                formLabelService: "Servicio(s) de su Interés",
+                selectServiceOption1: "Seleccione un servicio...",
+                selectServiceOption2: "Corte y Mantenimiento de Césped",
+                selectServiceOption3: "Limpieza de Contenedores de Basura",
+                selectServiceOption4: "Ambos Servicios de Césped y Contenedores",
+                selectServiceOption5: "Otro/Pregunta",
+                formLabelMessage: "Cuéntenos sobre sus Necesidades (Tamaño de la Propiedad, Cantidad de Contenedores, etc.)",
+                formSubmitButton: "Enviar Solicitud de Presupuesto",
+                footerCopyright: "&copy; 2025 Austin's Green & Clean. Todos los derechos reservados.",
+                footerPhone: "512-810-7933",
+                footerEmail: "austinreedlewis@icloud.com",
+                footerLocation: "Orgullosamente sirviendo el área de Leander, TX.",
+                aiSuggestButton: "Ayuda", // Updated text for the AI suggestion button
+                aiSuggestionTitle: "Sugerencia de IA:",
+                aiLoadingText: "Generando sugerencia..."
+            },
+            fr: {
+                pageTitle: "Austin's Green and Clean - Entretien de pelouse premium & Nettoyage hygiénique des poubelles",
+                headerTitle: "Austin's Green & Clean",
+                navHome: "Accueil",
+                navServices: "Services",
+                navAbout: "À Propos",
+                navBenefits: "Pourquoi Nous Choisir",
+                navContact: "Contact",
+                mobileNavHome: "Accueil",
+                mobileNavServices: "Services",
+                mobileNavAbout: "À Propos",
+                mobileNavBenefits: "Pourquoi Nous Choisir",
+                mobileNavContact: "Contact",
+                heroHeading: "Austin's Green & Clean",
+                heroSubheading: "Qualité inégalée pour votre pelouse et fraîcheur imbattable pour vos poubelles à Leander, TX.",
+                heroCtaButton: "Obtenez votre devis gratuit et sans engagement dès aujourd'hui !",
+                servicesTitle: "Nos Services Spécialisés",
+                servicesIntro: "Nous combinons une attention méticuleuse aux détails avec des processus efficaces et des équipements de pointe pour offrir des résultats visibles et exceptionnels pour l'extérieur et l'hygiène de votre maison. Choisissez les services qui répondent le mieux à vos besoins :",
+                lawnCareHeading: "Tonte et Entretien de Pelouse Exceptionnels",
+                lawnCareIntro: "Obtenez une pelouse toujours belle et saine sans lever le petit doigt. Bien que vous ayez votre propre équipement comme une débroussailleuse ou une tondeuse à gazon, nos services experts de tonte et d'entretien de pelouse vous feront gagner un temps et des efforts précieux. La tarification dépend de la taille de votre jardin, et nos services sont adaptés aux besoins uniques de votre gazon, favorisant une croissance vibrante et une apparence impeccable qui améliore l'attrait de votre maison.",
+                lawnCare1Title: "Tonte de Précision :",
+                lawnCare1Desc: "Coupe experte à la hauteur optimale pour la santé et l'esthétique du gazon, assurant un aspect soigné et favorisant une croissance plus dense et plus verte.",
+                lawnCare2Title: "Bords et Garnitures Nettes :",
+                lawnCare2Desc: "Bords définis et nets le long des trottoirs, des allées et des parterres de jardin, complétés par une taille soigneuse autour de tous les obstacles pour une finition vraiment impeccable.",
+                lawnCare3Title: "Soufflage et Nettoyage des Débris :",
+                lawnCare3Desc: "Un balayage final méticuleux qui élimine complètement toutes les tontes de gazon, les feuilles et les débris légers des surfaces dures, laissant l'ensemble de votre propriété impeccable et prête à être appréciée.",
+                lawnCare4Title: "Services Saisonniers Disponibles :",
+                lawnCare4Desc: "Au-delà de la tonte régulière, renseignez-vous sur nos offres saisonnières spécialisées adaptées pour préparer votre pelouse à chaque saison du Texas, assurant beauté et santé toute l'année.",
+                binCleaningHeading: "Nettoyage et Désinfection Professionnels des Poubelles",
+                binCleaningIntro: "Dites adieu au cauchemar insalubre et malodorant des poubelles sales. Notre processus de nettoyage mobile de pointe élimine les odeurs, les bactéries nocives et les parasites indésirables, transformant vos poubelles en conteneurs frais et hygiéniques qui contribuent à un environnement domestique plus sain. Chaque poubelle est nettoyée pour seulement **20 $ par poubelle**. Bien que vous puissiez posséder un nettoyeur haute pression, notre système spécialisé à eau chaude à 200 degrés assure un niveau d'assainissement au-delà des équipements domestiques typiques.",
+                binCleaning1Title: "Nettoyage Haute Pression en Profondeur :",
+                binCleaning1Desc: "Utilisant de l'eau chaude spécialisée à 200 degrés et de puissants jets à haute pression, nous éliminons en profondeur même les saletés les plus tenaces, les résidus incrustés et les dégâts collants de toutes les surfaces intérieures et extérieures.",
+                binCleaning2Title: "Neutralisation des Odeurs :",
+                binCleaning2Desc: "Nos solutions de nettoyage avancées et écologiques ne masquent pas seulement les odeurs désagréables ; elles éliminent les causes profondes, laissant vos poubelles sentir réellement fraîches et remarquablement propres.",
+                binCleaning3Title: "Élimination des Germes et Bactéries :",
+                binCleaning3Desc: "La combinaison de températures élevées et de désinfectants puissants tue efficacement 99,9 % des bactéries, virus et moisissures courants, créant un environnement plus sûr et plus hygiénique autour de votre maison.",
+                binCleaning4Title: "Écologique et Confiné :",
+                binCleaning4Desc: "Notre camion de nettoyage spécialisé capture toutes les eaux usées et les débris, empêchant le ruissellement nocif dans les égouts pluviaux et garantissant un processus de nettoyage respectueux de l'environnement et conforme.",
+                binCleaning5Title: "Options de Planification Flexibles :",
+                binCleaning5Desc: "Choisissez parmi des nettoyages en profondeur uniques pour un rafraîchissement rapide, ou optez pour des services mensuels ou bimensuels récurrents pour une hygiène constante sans aucun tracas de votre part.",
+                whyChooseUsTitle: "Pourquoi Austin's Green & Clean est Votre Meilleur Choix",
+                whyChooseUsIntro: "Lorsque vous choisissez Austin's Green & Clean, vous n'obtenez pas seulement un service ; vous investissez dans la qualité, une fiabilité inébranlable et une tranquillité d'esprit ultime. Voici ce qui nous distingue vraiment :",
+                benefit1Title: "Expertise Locale Inégalée",
+                benefit1Desc: "Servant fièrement les propriétaires et les entreprises ici à Leander, TX, et dans nos communautés voisines. Nous possédons une compréhension approfondie des besoins locaux en matière d'entretien des pelouses et des normes d'hygiène, offrant des solutions spécialement adaptées qui prospèrent dans notre climat spécifique.",
+                benefit2Title: "Qualité Garantie & Détails Méticuleux",
+                benefit2Desc: "Notre engagement est la perfection absolue. Chaque séance de tonte de pelouse et de nettoyage des poubelles est exécutée avec une attention inégalée aux détails, garantissant un niveau de qualité visiblement élevé que vous apprécierez et en lequel vous aurez immédiatement confiance.",
+                benefit3Title: "Environnementalement Responsable Practices",
+                benefit3Desc: "Nous accordons la plus haute priorité à la sécurité de votre famille et au bien-être de la planète. Nos solutions de nettoyage sont méticuleusement choisies pour être entièrement biodegradables, et toutes nos méthodes opérationnelles sont conçues par des experts pour être écologiques, prévenant rigoureusement les ruissellements nocifs.",
+                benefit4Title: "Customer-Centric Service Excellence",
+                benefit4Desc: "Votre entière satisfaction n'est pas seulement un objectif ; c'est notre promesse fondamentale. Nous écoutons attentivement vos besoins spécifiques, communiquons clairement et de manière proactive, et nous nous surpassons constamment pour nous assurer que vous êtes absolument ravi de chaque résultat que nous livrons.",
+                benefit5Title: "Politique de Prix Transparente et Juste",
+                benefit5Desc: "Découvrez des services de nettoyage de pelouse et de poubelles de qualité supérieure sans le prix élevé. Nous offrons des tarifs clairs, directs et compétitifs sans frais cachés, offrant une valeur exceptionnelle pour votre investissement dans une maison belle et hygiénique.",
+                benefit6Title: "Commodité Inégalée & Tranquillité d'Esprit",
+                benefit6Desc: "Récupérez votre temps et votre énergie précieux ! Nous nous occupons habilement de tout le travail salissant et de l'entretien extérieur afin que vous n'ayez pas à le faire, offrant des options de planification très flexibles et un service toujours fiable qui libère sans effort votre emploi du temps chargé.",
+                aboutUsTitle: "À Propos d'Austin's Green & Clean",
+                aboutUsParagraph1: "Bonjour, je suis Austin ! En tant que fier propriétaire d'Austin's Green & Clean, j'ai bâti cette entreprise sur une base de fiabilité inébranlable, une attention méticuleuse à chaque détail et une passion sincère pour la création d'espaces plus propres et plus verts ici même à Leander, TX et dans les communautés environnantes. Mon objectif ultime est de fournir bien plus que de simples services – je vise à offrir une tranquillité d'esprit absolue et des résultats visiblement rafraîchissants que vous apprécierez vraiment, contribuant activement à la beauté, à la santé et à la vitalité de notre communauté locale.",
+                aboutUsParagraph2: "Qu'il s'agisse de garantir que votre pelouse reste impeccablement entretenue, vibrante et saine à chaque saison changeante grâce à nos techniques de tonte de précision, ou d'éliminer complètement les odeurs tenaces, la saleté disgracieuse et les bactéries nocives de vos poubelles et bacs de recyclage, j'aborde chaque tâche avec le plus grand professionnalisme et un engagement inébranlable envers l'excellence. J'utilise exclusivement des équipements de pointe très efficaces et des méthodes véritablement écologiques, car je crois qu'il est primordial de prendre soin de votre propriété avec le plus grand respect tout en protégeant diligemment l'environnement précieux que nous partageons tous.",
+                aboutUsParagraph3: "Votre entière satisfaction n'est pas seulement un objectif éphémère ; c'est la force motrice singulière derrière chaque service que j'offre avec diligence. Je m'efforce sans relâche de construire des relations durables et de confiance avec tous mes précieux clients en fournissant constamment un travail de haute qualité qui vous simplifie la vie sans effort, rend votre maison indéniablement plus invitante et votre environnement immédiat nettement plus sain. Découvrez la différence véritablement transformatrice d'Austin's Green & Clean – où un service fiable de premier ordre rencontre une touche personnelle dévouée sur laquelle vous pouvez compter.",
+                ctaHeading: "Prêt pour un Espace Vraiment Propre et Vert ?",
+                ctaSubheading: "Laissez Austin's Green & Clean s'occuper du sale boulot. Obtenez votre devis personnalisé gratuit dès aujourd'hui !",
+                ctaButton: "Demandez Votre Devis Gratuit !",
+                contactTitle: "Contactez-Nous",
+                contactIntro: "Vous avez des questions, besoin d'un devis de service détaillé ou prêt à planifier votre premier service ? Contactez Austin's Green & Clean par votre méthode préférée. Nous sommes ravis de vous entendre et de transformer votre propriété !",
+                phoneContactHeading: "Appelez-nous Directement",
+                phoneContactDesc: "Contactez Austin pour une assistance immédiate ou pour discuter de vos besoins spécifiques.",
+                emailContactHeading: "Envoyez-nous un E-mail",
+                emailContactDesc: "Pour des demandes détaillées ou des devis écrits, envoyez-nous un e-mail. Nous répondons généralement dans les 24 heures.",
+                formHeading: "Demandez Votre Devis Gratuit en Ligne !",
+                formLabelName: "Votre Nom",
+                formLabelEmail: "Votre E-mail",
+                formLabelPhone: "Numéro de Téléphone (Facultatif, mais recommandé pour des devis rapides)",
+                formLabelService: "Service(s) Qui Vous Intéressent",
+                selectServiceOption1: "Sélectionnez un service...",
+                selectServiceOption2: "Tonte et Entretien de Pelouse",
+                selectServiceOption3: "Nettoyage des Poubelles",
+                selectServiceOption4: "Services de Pelouse et de Poubelles",
+                selectServiceOption5: "Autre/Question",
+                formLabelMessage: "Parlez-nous de Vos Besoins (Taille de la Propriété, Quantité de Poubelles, etc.)",
+                formSubmitButton: "Soumettre Ma Demande de Devis",
+                footerCopyright: "&copy; 2025 Austin's Green & Clean. Tous droits réservés.",
+                footerPhone: "512-810-7933",
+                footerEmail: "austinreedlewis@icloud.com",
+                footerLocation: "Servant fièrement la région de Leander, TX.",
+                aiSuggestButton: "Aide", // Updated text for the AI suggestion button
+                aiSuggestionTitle: "Suggestion IA :",
+                aiLoadingText: "Génération de la suggestion..."
+            },
+            de: {
+                pageTitle: "Austin's Green and Clean - Premium Rasenpflege & Hygienische Mülltonnenreinigung",
+                headerTitle: "Austin's Green & Clean",
+                navHome: "Startseite",
+                navServices: "Dienstleistungen",
+                navAbout: "Über Uns",
+                navBenefits: "Warum Uns Wählen",
+                navContact: "Kontakt",
+                mobileNavHome: "Startseite",
+                mobileNavServices: "Dienstleistungen",
+                mobileNavAbout: "Über Uns",
+                mobileNavBenefits: "Warum Uns Wählen",
+                mobileNavContact: "Kontakt",
+                heroHeading: "Austin's Green & Clean",
+                heroSubheading: "Kompromisslose Qualität für Ihren Rasen und unschlagbare Frische für Ihre Mülltonnen in Leander, TX.",
+                heroCtaButton: "Holen Sie sich noch heute Ihr kostenloses, unverbindliches Angebot!",
+                servicesTitle: "Unsere Spezialisierten Dienstleistungen",
+                servicesIntro: "Wir kombinieren akribische Liebe zum Detail mit effizienten Prozessen und erstklassiger Ausrüstung, um herausragende, sichtbare Ergebnisse für das Äußere und die Hygiene Ihres Hauses zu liefern. Wählen Sie die Dienstleistungen, die am besten zu Ihren Bedürfnissen passen:",
+                lawnCareHeading: "Ausgezeichnete Rasenpflege & Wartung",
+                lawnCareIntro: "Erreichen Sie einen konstant schönen und gesunden Rasen, ohne einen Finger zu rühren. Auch wenn Sie Ihr eigenes Equipment wie einen Rasentrimmer oder Rasenmäher besitzen, sparen Ihnen unsere Experten für Rasenmähen und -pflege wertvolle Zeit und Mühe. Die Preise richten sich nach der Größe Ihres Gartens, und unsere Dienstleistungen sind auf die einzigartigen Bedürfnisse Ihres Rasens zugeschnitten, um lebendiges Wachstum und ein makelloses Aussehen zu fördern, das die Attraktivität Ihres Hauses steigert.",
+                lawnCare1Title: "Präzisionsmähen:",
+                lawnCare1Desc: "Expertenmähen in der optimalen Höhe für Rasengesundheit und Ästhetik, um ein gepflegtes Aussehen zu gewährleisten und dichteres, grüneres Wachstum zu fördern.",
+                lawnCare2Title: "Scharfe Kanten & Trimmen:",
+                lawnCare2Desc: "Definierte, scharfe Kanten entlang von Gehwegen, Einfahrten und Blumenbeeten, ergänzt durch sorgfältiges Trimmen um alle Hindernisse für ein wirklich sauberes Finish.",
+                lawnCare3Title: "Laubblasen & Aufräumen:",
+                lawnCare3Desc: "Ein sorgfältiger letzter Durchgang, der alle Grasschnittreste, Blätter und leichten Abfälle von harten Oberflächen entfernt und Ihr gesamtes Grundstück makellos und genussbereit hinterlässt.",
+                lawnCare4Title: "Saisonale Dienstleistungen Verfügbar:",
+                lawnCare4Desc: "Über das regelmäßige Mähen hinaus fragen Sie uns nach unseren spezialisierten saisonalen Angeboten, die darauf zugeschnitten sind, Ihren Rasen auf jede Texas-Saison vorzubereiten und das ganze Jahr über Schönheit und Gesundheit zu gewährleisten.",
+                binCleaningHeading: "Professionelle Mülltonnenreinigung & Desinfektion",
+                binCleaningIntro: "Verabschieden Sie sich vom unhygienischen und übelriechenden Albtraum schmutziger Mülltonnen. Unser hochmoderner, mobiler Reinigungsprozess eliminiert Gerüche, schädliche Bakterien und unerwünschte Schädlinge und verwandelt Ihre Tonnen in frische, hygienische Behälter, die zu einem gesünderen Zuhause beitragen. Jede Tonne wird für nur **20 $ pro Tonne** gereinigt. Auch wenn Sie einen eigenen Hochdruckreiniger besitzen, gewährleistet unser spezielles 200-Grad-Heißwassersystem einen Sanierungsgrad, der über typische Haushaltsgeräte hinausgeht.",
+                binCleaning1Title: "Tiefen-Hochdruckreinigung:",
+                binCleaning1Desc: "Mit spezialisiertem 200-Grad-Heißwasser und leistungsstarken Hochdruckdüsen entfernen wir selbst den hartnäckigsten Schmutz, eingebrannte Rückstände und klebrige Verschmutzungen von allen Innen- und Außenflächen.",
+                binCleaning2Title: "Geruchsneutralisierung:",
+                binCleaning2Desc: "Unsere fortschrittlichen, umweltfreundlichen Reinigungslösungen maskieren unangenehme Gerüche nicht nur; sie eliminieren die Grundursachen und hinterlassen Ihre Tonnen wirklich frisch und bemerkenswert sauber riechend.",
+                binCleaning3Title: "Bakterien- & Keimelimination:",
+                binCleaning3Desc: "Die Kombination aus hohen Temperaturen und starken Desinfektionsmitteln tötet effektiv 99,9 % der gängigen Bakterien, Viren und Schimmelpilze ab und schafft so eine sicherere und hygienischere Umgebung in Ihrem Zuhause.",
+                binCleaning4Title: "Umweltfreundlich & Eingedämmt:",
+                binCleaning4Desc: "Unser spezialisiertes Reinigungsfahrzeug fängt alle Abwässer und Abfälle auf, verhindert schädlichen Abfluss in Regenabflüsse und gewährleistet einen umweltfreundlichen und konformen Reinigungsprozess.",
+                binCleaning5Title: "Flexible Planungsoptionen:",
+                binCleaning5Desc: "Wählen Sie zwischen einmaligen Tiefenreinigungen für eine schnelle Auffrischung oder richten Sie wiederkehrende monatliche oder zweimonatliche Dienste für konstante Hygiene ohne jeglichen Aufwand Ihrerseits ein.",
+                whyChooseUsTitle: "Warum Austin's Green & Clean Ihre Beste Wahl ist",
+                whyChooseUsIntro: "Wenn Sie Austin's Green & Clean wählen, erhalten Sie nicht nur einen Service; Sie investieren in Qualität, unerschütterliche Zuverlässigkeit und ultimative Ruhe. Das zeichnet uns wirklich aus:",
+                benefit1Title: "Unübertroffene Lokale Expertise",
+                benefit1Desc: "Wir bedienen stolz Hausbesitzer und Unternehmen hier in Leander, TX, und unseren Nachbargemeinden. Wir verfügen über ein tiefes Verständnis der lokalen Rasenpflegebedürfnisse und Hygienestandards und bieten einzigartig maßgeschneiderte Lösungen, die in unserem spezifischen Klima gedeihen.",
+                benefit2Title: "Garantierte Qualität & Akribische Details",
+                benefit2Desc: "Unser Engagement ist absolute Perfektion. Jede Rasenmähsitzung und Mülltonnenreinigung wird mit beispielloser Liebe zum Detail durchgeführt, um einen gleichbleibend hohen Standard sichtbarer Exzellenz zu gewährleisten, den Sie sofort schätzen und dem Sie vertrauen werden.",
+                benefit3Title: "Umweltbewusste Praktiken",
+                benefit3Desc: "Wir legen größten Wert auf die Sicherheit Ihrer Familie und das Wohl des Planeten. Unsere Reinigungslösungen werden sorgfältig ausgewählt, um vollständig biologisch abbaubar zu sein, und alle unsere Betriebsmethoden sind fachmännisch so konzipiert, dass sie umweltfreundlich sind und schädlichen Abfluss streng verhindern.",
+                benefit4Title: "Kundenorientierte Service-Exzellenz",
+                benefit4Desc: "Ihre vollständige Zufriedenheit ist nicht nur ein Ziel; es ist unser grundlegendes Versprechen. Wir hören aufmerksam auf Ihre spezifischen Bedürfnisse, kommunizieren klar und proaktiv und gehen konsequent die Extrameile, um sicherzustellen, dass Sie mit jedem Ergebnis, das wir liefern, absolut zufrieden sind.",
+                benefit5Title: "Transparente & Faire Preispolitik",
+                benefit5Desc: "Erleben Sie erstklassige Rasenpflege- und Mülltonnenreinigungsdienste ohne den Premium-Preis. Wir bieten klare, unkomplizierte und wettbewerbsfähige Preise ohne versteckte Gebühren und bieten ein außergewöhnliches Preis-Leistungs-Verhältnis für Ihre hart verdiente Investition in ein schönes und hygienisches Zuhause.",
+                benefit6Title: "Unübertroffene Bequemlichkeit & Ruhe",
+                benefit6Desc: "Gewinnen Sie Ihre wertvolle Zeit und Energie zurück! Wir erledigen fachmännisch die ganze Schmutzarbeit und Außenpflege, damit Sie es nicht tun müssen, und bieten hochflexible Planungsoptionen und konstant zuverlässigen Service, der Ihren anspruchsvollen Zeitplan mühelos freihält.",
+                aboutUsTitle: "Über Austin's Green & Clean",
+                aboutUsParagraph1: "Hallo, ich bin Austin! Als stolzer Inhaber von Austin's Green & Clean habe ich dieses Unternehmen auf der Grundlage unerschütterlicher Zuverlässigkeit, akribischer Liebe zum Detail und einer echten Leidenschaft für die Schaffung saubererer, grünerer Räume hier in Leander, TX, und den umliegenden Gemeinden aufgebaut. Mein ultimatives Ziel ist es, weit mehr als nur Dienstleistungen anzubieten – ich möchte absolute Ruhe und sichtbar erfrischende Ergebnisse liefern, die Sie wirklich schätzen werden, und so aktiv zur Schönheit, Gesundheit und Vitalität unserer lokalen Gemeinschaft beitragen.",
+                aboutUsParagraph2: "Ob es darum geht, sicherzustellen, dass Ihr Rasen das ganze Jahr über makellos gepflegt, lebendig und gesund bleibt, mit unseren Präzisionsmähmethoden, oder hartnäckige Gerüche, unansehnlichen Schmutz und schädliche Bakterien aus Ihren Müll- und Recyclingtonnen vollständig zu entfernen, ich gehe jede einzelne Aufgabe mit größter Professionalität und einem unerschütterlichen Engagement für Exzellenz an. Ich verwende ausschließlich hochwirksame, modernste Geräte und wirklich umweltbewusste Methoden, denn ich glaube, es ist von größter Bedeutung, Ihr Eigentum mit größtem Respekt zu pflegen und gleichzeitig die wertvolle Umwelt, die wir alle teilen, sorgfältig zu schützen.",
+                aboutUsParagraph3: "Ihre vollständige Zufriedenheit ist nicht nur ein flüchtiges Ziel; sie ist die einzige treibende Kraft hinter jeder Dienstleistung, die ich gewissenhaft anbiete. Ich bemühe mich unermüdlich, dauerhafte, vertrauensvolle Beziehungen zu all meinen geschätzten Kunden aufzubringen, indem ich konsequent qualitativ hochwertige Arbeit leiste, die Ihnen das Leben mühelos erleichtert, Ihr Zuhause unbestreitbar einladender macht und Ihr unmittelbares Umgebung erheblich gesünder. Erleben Sie den wirklich transformativen Unterschied von Austin's Green & Clean – wo erstklassiger, zuverlässiger Service auf eine engagierte, persönliche Note trifft, auf die Sie sich verlassen können.",
+                ctaHeading: "Bereit für einen wirklich sauberen und grünen Raum?",
+                ctaSubheading: "Überlassen Sie Austin's Green & Clean die schmutzige Arbeit. Holen Sie sich noch heute Ihr kostenloses, personalisiertes Angebot!",
+                ctaButton: "Angebot anfordern!",
+                contactTitle: "Kontaktieren Sie uns",
+                contactIntro: "Haben Sie Fragen, benötigen Sie ein detailliertes Serviceangebot oder möchten Sie Ihren ersten Service buchen? Kontaktieren Sie Austin's Green & Clean über Ihre bevorzugte Methode. Wir freuen uns darauf, von Ihnen zu hören und Ihr Eigentum zu verwandeln!",
+                phoneContactHeading: "Rufen Sie uns direkt an",
+                phoneContactDesc: "Wenden Sie sich an Austin, um sofortige Hilfe zu erhalten oder Ihre spezifischen Bedürfnisse zu besprechen.",
+                emailContactHeading: "Senden Sie uns eine E-Mail",
+                emailContactDesc: "Für detaillierte Anfragen oder schriftliche Angebote senden Sie uns eine E-Mail. Wir antworten in der Regel innerhalb von 24 Stunden.",
+                formHeading: "Fordern Sie Ihr kostenloses Angebot online an!",
+                formLabelName: "Ihr Name",
+                formLabelEmail: "Ihre E-Mail",
+                formLabelPhone: "Telefonnummer (Optional, aber für schnelle Angebote empfohlen)",
+                formLabelService: "Service(s), an denen Sie interessiert sind",
+                selectServiceOption1: "Wählen Sie einen Service...",
+                selectServiceOption2: "Rasenmähen & Wartung",
+                selectServiceOption3: "Mülltonnenreinigung",
+                selectServiceOption4: "Beide Rasen- & Mülltonnendienste",
+                selectServiceOption5: "Andere/Frage",
+                formLabelMessage: "Teilen Sie uns Ihre Bedürfnisse mit (Grundstücksgröße, Anzahl der Mülltonnen usw.)",
+                formSubmitButton: "Mein Angebotsanfrage senden",
+                footerCopyright: "&copy; 2025 Austin's Green & Clean. Alle Rechte vorbehalten.",
+                footerPhone: "512-810-7933",
+                footerEmail: "austinreedlewis@icloud.com",
+                footerLocation: "Stolz im Raum Leander, TX tätig.",
+                aiSuggestButton: "Hilfe", // Updated text for the AI suggestion button
+                aiSuggestionTitle: "KI-Vorschlag:",
+                aiLoadingText: "Vorschlag wird generiert..."
+            },
+            hi: {
+                pageTitle: "ऑस्टिन का ग्रीन एंड क्लीन - प्रीमियम लॉन केयर और स्वच्छ बिन सफाई",
+                headerTitle: "ऑस्टिन का ग्रीन एंड क्लीन",
+                navHome: "होम",
+                navServices: "सेवाएं",
+                navAbout: "हमारे बारे में",
+                navBenefits: "हमें क्यों चुनें",
+                navContact: "संपर्क करें",
+                mobileNavHome: "होम",
+                mobileNavServices: "सेवाएं",
+                mobileNavAbout: "हमारे बारे में",
+                mobileNavBenefits: "हमें क्यों चुनें",
+                mobileNavContact: "संपर्क करें",
+                heroHeading: "ऑस्टिन का ग्रीन एंड क्लीन",
+                heroSubheading: "आपके लॉन के लिए समझौताहीन गुणवत्ता और लीलैंडर, TX में आपके डिब्बे के लिए बेजोड़ ताजगी।",
+                heroCtaButton: "आज ही अपना निःशुल्क, बिना बाध्यता वाला कोट प्राप्त करें!",
+                servicesTitle: "हमारी विशेष सेवाएं",
+                servicesIntro: "हम आपके घर के बाहरी हिस्से और स्वच्छता के लिए उत्कृष्ट, दृश्यमान परिणाम देने के लिए विस्तार पर सावधानीपूर्वक ध्यान, कुशल प्रक्रियाओं और शीर्ष-स्तरीय उपकरणों को जोड़ते हैं। अपनी आवश्यकताओं के अनुरूप सेवाएं चुनें:",
+                lawnCareHeading: "असाधारण लॉन की कटाई और रखरखाव",
+                lawnCareIntro: "बिना उंगली उठाए लगातार सुंदर और स्वस्थ लॉन प्राप्त करें। यद्यपि आपके पास अपना स्वयं का वीड वैकर या लॉन घास काटने की मशीन जैसे उपकरण हो सकते हैं, हमारी विशेषज्ञ लॉन कटाई और रखरखाव सेवाएं आपको मूल्यवान समय और प्रयास बचाती हैं। मूल्य निर्धारण आपके यार्ड के आकार पर निर्भर करता है, और हमारी सेवाएं आपके घास की अनूठी जरूरतों के अनुरूप हैं, जो जीवंत विकास और एक प्राचीन उपस्थिति को बढ़ावा देती हैं जो आपके घर के आकर्षण को बढ़ाती है।",
+                lawnCare1Title: "सटीक कटाई:",
+                lawnCare1Desc: "घास के स्वास्थ्य और सौंदर्यशास्त्र के लिए इष्टतम ऊंचाई पर विशेषज्ञ कटाई, एक सुव्यवस्थित रूप सुनिश्चित करना और सघन, हरियाली विकास को बढ़ावा देना।",
+                lawnCare2Title: "कुरकुरी किनारा और ट्रिमिंग:",
+                lawnCare2Desc: "फुटपाथों, ड्राइववे और बगीचे के बिस्तरों के साथ परिभाषित, तेज किनारे, एक साफ फिनिश के लिए सभी बाधाओं के चारों ओर सावधानीपूर्वक ट्रिमिंग द्वारा पूरक।",
+                lawnCare3Title: "मलबे को उड़ाना और सफाई:",
+                lawnCare3Desc: "एक सावधानीपूर्वक अंतिम सफाई जो कठोर सतहों से सभी घास की कतरनें, पत्तियां और हल्के मलबे को पूरी तरह से साफ करती है, आपकी पूरी संपत्ति को बेदाग और आनंद लेने के लिए तैयार छोड़ देती है।",
+                lawnCare4Title: "मौसमी सेवाएं उपलब्ध:",
+                lawnCare4Desc: "नियमित कटाई से परे, टेक्सास के हर मौसम के लिए अपने लॉन को तैयार करने के लिए हमारी विशेष मौसमी पेशकशों के बारे में पूछें, साल भर सुंदरता और स्वास्थ्य सुनिश्चित करना।",
+                binCleaningHeading: "पेशेवर कचरा बिन सफाई और स्वच्छता",
+                binCleaningIntro: "गंदे कचरा डिब्बे के अस्वच्छ और बदबूदार दुःस्वप्न को अलविदा कहें। हमारी अत्याधुनिक, मोबाइल सफाई प्रक्रिया गंध, हानिकारक बैक्टीरिया और अवांछित कीटों को समाप्त करती है, आपके डिब्बे को ताजा, स्वच्छ कंटेनरों में बदल देती है जो एक स्वस्थ घर के वातावरण में योगदान करते हैं। प्रत्येक डिब्बे को सिर्फ **प्रति डिब्बा $20** में साफ किया जाता है। यद्यपि आपके पास अपना प्रेशर वॉशर हो सकता है, हमारा विशेष 200-डिग्री गर्म पानी प्रणाली सामान्य घर के उपकरणों से परे स्वच्छता का स्तर सुनिश्चित करती है।",
+                binCleaning1Title: "गहरा दबाव धोना:",
+                binCleaning1Desc: "विशेषज्ञ 200-डिग्री गर्म पानी और शक्तिशाली उच्च दबाव वाले जेट का उपयोग करके, हम हर आंतरिक और बाहरी सतह से सबसे कठिन गंदगी, जमी हुई अवशेषों और चिपचिपी गड़बड़ी को अच्छी तरह से हटाते हैं।",
+                binCleaning2Title: "गंध निष्प्रभावीकरण:",
+                binCleaning2Desc: "हमारे उन्नत, पर्यावरण के अनुकूल सफाई समाधान केवल अप्रिय गंधों को छिपाते नहीं हैं; वे जड़ के कारणों को समाप्त करते हैं, आपके डिब्बे को वास्तव में ताजा और उल्लेखनीय रूप से साफ महकते हुए छोड़ देते हैं।",
+                binCleaning3Title: "कीटाणु और बैक्टीरिया उन्मूलन:",
+                binCleaning3Desc: "उच्च तापमान और शक्तिशाली कीटाणुनाशकों का संयोजन सामान्य बैक्टीरिया, वायरस और मोल्ड के 99.9% को प्रभावी ढंग से मारता है, जिससे आपके घर के चारों ओर एक सुरक्षित और अधिक स्वच्छ वातावरण बनता है।",
+                binCleaning4Title: "पर्यावरण के अनुकूल और निहित:",
+                binCleaning4Desc: "हमारा विशेष सफाई ट्रक सभी अपशिष्ट जल और मलबे को पकड़ता है, तूफान नालियों में हानिकारक बहाव को रोकता है और एक पर्यावरण जिम्मेदार और अनुरूप सफाई प्रक्रिया सुनिश्चित करता है।",
+                binCleaning5Title: "लचीले शेड्यूलिंग विकल्प:",
+                binCleaning5Desc: "त्वरित ताज़गी के लिए सुविधाजनक एक-बार गहरी सफाई से चुनें, या अपनी ओर से बिल्कुल भी परेशानी के बिना लगातार स्वच्छता के लिए आवर्ती मासिक या द्वि-मासिक सेवाएं स्थापित करें।",
+                whyChooseUsTitle: "ऑस्टिन का ग्रीन एंड क्लीन आपकी सबसे अच्छी पसंद क्यों है",
+                whyChooseUsIntro: "जब आप ऑस्टिन का ग्रीन एंड क्लीन चुनते हैं, तो आपको केवल एक सेवा नहीं मिलती है; आप गुणवत्ता, अटूट विश्वसनीयता और अंतिम मन की शांति में निवेश कर रहे हैं। यहाँ बताया गया है कि हमें वास्तव में क्या अलग करता है:",
+                benefit1Title: "बेजोड़ स्थानीय विशेषज्ञता",
+                benefit1Desc: "लीलैंडर, TX, और हमारे पड़ोसी समुदायों में यहां के गृहस्वामियों और व्यवसायों की गर्व से सेवा करना। हमें स्थानीय लॉन देखभाल आवश्यकताओं और स्वच्छता मानकों की गहरी समझ है, जो विशिष्ट रूप से तैयार किए गए समाधान प्रदान करते हैं जो हमारे विशिष्ट जलवायु में फलते-फूलते हैं।",
+                benefit2Title: "गारंटीकृत गुणवत्ता और सावधानीपूर्वक विवरण",
+                benefit2Desc: "हमारी प्रतिबद्धता पूर्णता के लिए है। लॉन कटाई के प्रत्येक सत्र और कचरा डिब्बे की सफाई को विवरण पर बेजोड़ ध्यान के साथ निष्पादित किया जाता है, जो दृश्यमान उत्कृष्टता के एक लगातार उच्च मानक को सुनिश्चित करता है जिसे आप तुरंत सराहेंगे और भरोसा करेंगे।",
+                benefit3Title: "पर्यावरण के अनुकूल अभ्यास",
+                benefit3Desc: "हम आपके परिवार की सुरक्षा और ग्रह के कल्याण को सर्वोच्च प्राथमिकता देते हैं। हमारे सफाई समाधानों को पूरी तरह से बायोडिग्रेडेबल होने के लिए सावधानीपूर्वक चुना जाता है, और हमारे सभी परिचालन विधियों को पर्यावरण के अनुकूल होने के लिए विशेषज्ञ रूप से डिज़ाइन किया गया है, जो हानिकारक बहाव को सख्ती से रोकता है।",
+                benefit4Title: "ग्राहक-केंद्रित सेवा उत्कृष्टता",
+                benefit4Desc: "आपकी पूर्ण संतुष्टि सिर्फ एक लक्ष्य नहीं है; यह हमारा मूलभूत वादा है। हम आपकी विशिष्ट आवश्यकताओं को ध्यान से सुनते हैं, स्पष्ट रूप से और सक्रिय रूप से संवाद करते हैं, और यह सुनिश्चित करने के लिए लगातार अतिरिक्त मील जाते हैं कि आप हमारे द्वारा दिए गए प्रत्येक परिणाम से पूरी तरह से खुश हैं।",
+                benefit5Title: "पारदर्शी और निष्पक्ष मूल्य निर्धारण नीति",
+                benefit5Desc: "प्रीमियम मूल्य टैग के बिना प्रीमियम गुणवत्ता वाले लॉन देखभाल और बिन सफाई सेवाओं का अनुभव करें। हम बिना किसी छिपी हुई फीस के स्पष्ट, सीधा और प्रतिस्पर्धी दरें प्रदान करते हैं, जो एक सुंदर और स्वच्छ घर में आपके कड़ी मेहनत से अर्जित निवेश के लिए उत्कृष्ट मूल्य प्रदान करता है।",
+                benefit6Title: "बेजोड़ सुविधा और मन की शांति",
+                benefit6Desc: "अपना बहुमूल्य समय और ऊर्जा वापस पाएं! हम विशेषज्ञ रूप से सभी गंदे काम और बाहरी रखरखाव को संभालते हैं ताकि आपको ऐसा न करना पड़े, अत्यधिक लचीले शेड्यूलिंग विकल्प और लगातार विश्वसनीय सेवा प्रदान करते हैं जो आपके व्यस्त कार्यक्रम को आसानी से मुक्त करता है।",
+                aboutUsTitle: "ऑस्टिन का ग्रीन एंड क्लीन के बारे में",
+                aboutUsParagraph1: "नमस्ते, मैं ऑस्टिन हूँ! ऑस्टिन के ग्रीन एंड क्लीन के गर्वित मालिक के रूप में, मैंने इस व्यवसाय को अटूट विश्वसनीयता, हर विवरण पर सावधानीपूर्वक ध्यान और लीलैंडर, TX और आसपास के समुदायों में स्वच्छ, हरे-भरे स्थान बनाने के लिए एक वास्तविक जुनून के आधार पर बनाया है। मेरा अंतिम लक्ष्य केवल सेवाएं प्रदान करना नहीं है - मेरा लक्ष्य मन की पूर्ण शांति और स्पष्ट रूप से ताज़ा परिणाम देना है जिनकी आप वास्तव में सराहना करेंगे, जो हमारे स्थानीय समुदाय की सुंदरता, स्वास्थ्य और जीवन शक्ति में सक्रिय रूप से योगदान करेंगे।",
+                aboutUsParagraph2: "चाहे वह यह सुनिश्चित करना हो कि आपका लॉन हमारी सटीक कटाई तकनीकों के माध्यम से हर बदलते मौसम में त्रुटिहीन रूप से बनाए रखा जाए, जीवंत और स्वस्थ रहे, या आपके कचरा और रीसाइक्लिंग डिब्बे से जिद्दी गंध, बदसूरत गंदगी और हानिकारक बैक्टीरिया को पूरी तरह से खत्म करना हो, मैं हर एक कार्य को अत्यधिक व्यावसायिकता और उत्कृष्टता के प्रति अटूट प्रतिबद्धता के साथ करता हूं। मैं विशेष रूप से अत्यधिक प्रभावी, अत्याधुनिक उपकरणों और वास्तव में पर्यावरण के अनुकूल तरीकों का उपयोग करता हूं, क्योंकि मेरा मानना ​​है कि आपकी संपत्ति की अत्यंत सम्मान के साथ देखभाल करना और हम सभी साझा करते हैं उस अनमोल वातावरण की लगन से रक्षा करना सर्वोपरि है।",
+                aboutUsParagraph3: "आपकी पूर्ण संतुष्टि केवल एक क्षणभंगुर उद्देश्य नहीं है; यह हर उस सेवा के पीछे की एकमात्र प्रेरक शक्ति है जो मैं लगन से प्रदान करता हूं। मैं अपने सभी प्रिय ग्राहकों के साथ स्थायी, भरोसेमंद संबंध बनाने के लिए अथक प्रयास करता हूं, लगातार उच्च-गुणवत्ता वाला काम प्रदान करता हूं जो आपके जीवन को सहजता से आसान बनाता है, आपके घर को निर्विवाद रूप से अधिक आमंत्रित करता है, और आपके तत्काल वातावरण को काफी स्वस्थ बनाता है। ऑस्टिन के ग्रीन एंड क्लीन के वास्तव में परिवर्तनकारी अंतर का अनुभव करें - जहां शीर्ष-स्तरीय, विश्वसनीय सेवा एक समर्पित, व्यक्तिगत स्पर्श के साथ मिलती है जिस पर आप भरोसा कर सकते हैं।",
+                ctaHeading: "क्या आप वास्तव में स्वच्छ और हरे-भरे स्थान के लिए तैयार हैं?",
+                ctaSubheading: "ऑस्टिन के ग्रीन एंड क्लीन को गंदा काम संभालने दें। आज ही अपना निःशुल्क व्यक्तिगत कोट प्राप्त करें!",
+                ctaButton: "अपना निःशुल्क कोट का अनुरोध करें!",
+                contactTitle: "हमसे जुड़ें",
+                contactIntro: "क्या आपके पास प्रश्न हैं, एक विस्तृत सेवा अनुमान की आवश्यकता है, या अपनी पहली सेवा निर्धारित करने के लिए तैयार हैं? अपनी पसंदीदा विधि के माध्यम से ऑस्टिन के ग्रीन एंड क्लीन से संपर्क करें। हम आपसे सुनकर और आपकी संपत्ति को बदलने के लिए उत्साहित हैं!",
+                phoneContactHeading: "हमें सीधे कॉल करें",
+                phoneContactDesc: "तत्काल सहायता के लिए या अपनी विशिष्ट आवश्यकताओं पर चर्चा करने के लिए ऑस्टिन से संपर्क करें।",
+                emailContactHeading: "हमें एक ईमेल भेजें",
+                emailContactDesc: "विस्तृत पूछताछ या लिखित कोट के लिए, हमें एक ईमेल भेजें। हम आमतौर पर 24 घंटे के भीतर जवाब देते हैं।",
+                formHeading: "अपना निःशुल्क कोट ऑनलाइन अनुरोध करें!",
+                formLabelName: "आपका नाम",
+                formLabelEmail: "आपका ईमेल",
+                formLabelPhone: "फोन नंबर (वैकल्पिक, लेकिन त्वरित कोट के लिए अनुशंसित)",
+                formLabelService: "सेवा(ओं) में आपकी रुचि है",
+                selectServiceOption1: "एक सेवा चुनें...",
+                selectServiceOption2: "लॉन कटाई और रखरखाव",
+                selectServiceOption3: "कचरा बिन सफाई",
+                selectServiceOption4: "लॉन और बिन दोनों सेवाएं",
+                selectServiceOption5: "अन्य/प्रश्न",
+                formLabelMessage: "हमें अपनी आवश्यकताओं के बारे में बताएं (संपत्ति का आकार, डिब्बे की मात्रा, आदि)",
+                formSubmitButton: "मेरा कोट अनुरोध सबमिट करें",
+                footerCopyright: "&copy; 2025 ऑस्टिन का ग्रीन एंड क्लीन। सर्वाधिकार सुरक्षित।",
+                footerPhone: "512-810-7933",
+                footerEmail: "austinreedlewis@icloud.com",
+                footerLocation: "गर्व से लीलैंडर, TX क्षेत्र की सेवा कर रहा है।",
+                aiSuggestButton: "सहायता", // Updated text for the AI suggestion button
+                aiSuggestionTitle: "एआई सुझाव:",
+                aiLoadingText: "सुझाव उत्पन्न हो रहा है..."
+            }
+        };
+
+        // Function to change the language
+        function changeLanguage() {
+            const currentLang = document.getElementById('language-select').value;
+            // Ensure mobile dropdown also reflects the change
+            const mobileLangSelect = document.getElementById('mobile-language-select');
+            if (mobileLangSelect) {
+                mobileLangSelect.value = currentLang;
+            }
+
+            const langData = translations[currentLang];
+
+            // Helper function to update text content safely
+            function updateText(id, text) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = text;
+                } else {
+                    console.error(`Element with ID '${id}' not found for text update.`);
+                }
+            }
+
+            // Helper function to update placeholder safely
+            function updatePlaceholder(id, placeholder) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.placeholder = placeholder;
+                } else {
+                    console.error(`Element with ID '${id}' not found for placeholder update.`);
+                }
+            }
+
+            // Update title
+            updateText('pageTitle', langData.pageTitle);
+
+            // Update navigation
+            updateText('headerTitle', langData.headerTitle);
+            updateText('navHome', langData.navHome);
+            updateText('navServices', langData.navServices);
+            updateText('navAbout', langData.navAbout);
+            updateText('navBenefits', langData.navBenefits);
+            updateText('navContact', langData.navContact);
+            updateText('mobileNavHome', langData.mobileNavHome);
+            updateText('mobileNavServices', langData.mobileNavServices);
+            updateText('mobileNavAbout', langData.mobileNavAbout);
+            updateText('mobileNavBenefits', langData.mobileNavBenefits);
+            updateText('mobileNavContact', langData.mobileNavContact);
+
+            // Update Hero Section
+            updateText('heroHeading', langData.heroHeading);
+            updateText('heroSubheading', langData.heroSubheading);
+            updateText('heroCtaButton', langData.heroCtaButton);
+
+            // Update Services Section
+            updateText('servicesTitle', langData.servicesTitle);
+            updateText('servicesIntro', langData.servicesIntro);
+            updateText('lawnCareHeading', langData.lawnCareHeading);
+            updateText('lawnCareIntro', langData.lawnCareIntro); // Updated for pricing and equipment context
+            updateText('lawnCare1Title', langData.lawnCare1Title);
+            updateText('lawnCare1Desc', langData.lawnCare1Desc);
+            updateText('lawnCare2Title', langData.lawnCare2Title);
+            updateText('lawnCare2Desc', langData.lawnCare2Desc);
+            updateText('lawnCare3Title', langData.lawnCare3Title);
+            updateText('lawnCare3Desc', langData.lawnCare3Desc);
+            updateText('lawnCare4Title', langData.lawnCare4Title);
+            updateText('lawnCare4Desc', langData.lawnCare4Desc);
+            updateText('binCleaningHeading', langData.binCleaningHeading);
+            updateText('binCleaningIntro', langData.binCleaningIntro); // Updated for pricing and equipment context
+            updateText('binCleaning1Title', langData.binCleaning1Title);
+            updateText('binCleaning1Desc', langData.binCleaning1Desc);
+            updateText('binCleaning2Title', langData.binCleaning2Title);
+            updateText('binCleaning2Desc', langData.binCleaning2Desc);
+            updateText('binCleaning3Title', langData.binCleaning3Title);
+            updateText('binCleaning3Desc', langData.binCleaning3Desc);
+            updateText('binCleaning4Title', langData.binCleaning4Title);
+            updateText('binCleaning4Desc', langData.binCleaning4Desc);
+            updateText('binCleaning5Title', langData.binCleaning5Title);
+            updateText('binCleaning5Desc', langData.binCleaning5Desc);
+
+            // Update Why Choose Us Section
+            updateText('whyChooseUsTitle', langData.whyChooseUsTitle);
+            updateText('whyChooseUsIntro', langData.whyChooseUsIntro);
+            updateText('benefit1Title', langData.benefit1Title);
+            updateText('benefit1Desc', langData.benefit1Desc);
+            updateText('benefit2Title', langData.benefit2Title);
+            updateText('benefit2Desc', langData.benefit2Desc);
+            updateText('benefit3Title', langData.benefit3Title);
+            updateText('benefit3Desc', langData.benefit3Desc);
+            updateText('benefit4Title', langData.benefit4Title);
+            updateText('benefit4Desc', langData.benefit4Desc);
+            updateText('benefit5Title', langData.benefit5Title);
+            updateText('benefit5Desc', langData.benefit5Desc);
+            updateText('benefit6Title', langData.benefit6Title);
+            updateText('benefit6Desc', langData.benefit6Desc);
+
+            // Update About Us Section
+            updateText('aboutUsTitle', langData.aboutUsTitle);
+            updateText('aboutUsParagraph1', langData.aboutUsParagraph1);
+            updateText('aboutUsParagraph2', langData.aboutUsParagraph2);
+            updateText('aboutUsParagraph3', langData.aboutUsParagraph3);
+
+            // Update Call to Action Section
+            updateText('ctaHeading', langData.ctaHeading);
+            updateText('ctaSubheading', langData.ctaSubheading);
+            updateText('ctaButton', langData.ctaButton);
+
+            // Update Contact Section
+            updateText('contactTitle', langData.contactTitle);
+            updateText('contactIntro', langData.contactIntro);
+            updateText('phoneContactHeading', langData.phoneContactHeading);
+            updateText('phoneContactDesc', langData.phoneContactDesc);
+            updateText('emailContactHeading', langData.emailContactHeading);
+            updateText('emailContactDesc', langData.emailContactDesc);
+            updateText('formHeading', langData.formHeading);
+            updateText('formLabelName', langData.formLabelName);
+            updateText('formLabelEmail', langData.formLabelEmail);
+            updateText('formLabelPhone', langData.formLabelPhone);
+            updateText('formLabelService', langData.formLabelService);
+            updateText('selectServiceOption1', langData.selectServiceOption1);
+            updateText('selectServiceOption2', langData.selectServiceOption2);
+            updateText('selectServiceOption3', langData.selectServiceOption3);
+            updateText('selectServiceOption4', langData.selectServiceOption4);
+            updateText('selectServiceOption5', langData.selectServiceOption5);
+            updateText('formLabelMessage', langData.formLabelMessage);
+            updateText('formSubmitButton', langData.formSubmitButton);
+            updateText('aiSuggestButton', langData.aiSuggestButton);
+            updateText('aiSuggestionTitle', langData.aiSuggestionTitle);
+            // updateText('aiLoadingText', langData.aiLoadingText); // This is part of span inside loading div
+
+
+            // Update input placeholders separately
+            updatePlaceholder('name-form', langData.nameFormPlaceholder || (currentLang === 'en' ? 'Your Full Name' : (currentLang === 'es' ? 'Su Nombre Completo' : (currentLang === 'fr' ? 'Votre Nom Complet' : (currentLang === 'de' ? 'Ihr vollständiger Name' : 'आपका पूरा नाम')))));
+            updatePlaceholder('email-form', langData.emailFormPlaceholder || (currentLang === 'en' ? 'your@example.com' : (currentLang === 'es' ? 'su@ejemplo.com' : (currentLang === 'fr' ? 'votre@exemple.com' : (currentLang === 'de' ? 'ihre@beispiel.com' : 'आपकी@उदाहरण.कॉम')))));
+            updatePlaceholder('phone-form', langData.phoneFormPlaceholder || (currentLang === 'en' ? 'e.g., 555-123-4567' : (currentLang === 'es' ? 'ej., 555-123-4567' : (currentLang === 'fr' ? 'ex., 555-123-4567' : (currentLang === 'de' ? 'z.B., 555-123-4567' : 'उदा., 555-123-4567')))));
+            updatePlaceholder('message-form', langData.messageFormPlaceholder || (currentLang === 'en' ? 'Please provide details about your property (e.g., lawn size, how many bins you need cleaned, preferred service frequency)...' : (currentLang === 'es' ? 'Por favor, proporcione detalles sobre su propiedad (ej., tamaño del césped, cuántos contenedores necesita limpiar, frecuencia de servicio preferida)...' : (currentLang === 'fr' ? 'Veuillez fournir des détails sur votre propriété (ex. : taille de la pelouse, nombre de poubelles à nettoyer, fréquence de service préférée)...' : (currentLang === 'de' ? 'Bitte geben Sie Details zu Ihrem Eigentum an (z.B. Rasengröße, Anzahl der zu reinigenden Behälter, bevorzugte Servicehäufigkeit)...' : 'कृपया अपनी संपत्ति के बारे में विवरण प्रदान करें (उदा. लॉन का आकार, कितने डिब्बे साफ करने हैं, पसंदीदा सेवा आवृत्ति)...')))));
+
+
+            // Set HTML lang attribute
+            document.documentElement.lang = currentLang;
+        }
+
+        // Event listeners for mobile menu toggle and smooth scrolling (existing functions)
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton) { // Defensive check
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        }
+
+        function toggleMobileMenu() {
+            if (mobileMenu) { // Defensive check
+                mobileMenu.classList.toggle('hidden');
+                // Sync language dropdowns when mobile menu is toggled
+                const desktopSelect = document.getElementById('language-select');
+                const mobileSelect = document.getElementById('mobile-language-select');
+                if (mobileSelect && desktopSelect) {
+                    mobileSelect.value = desktopSelect.value;
+                }
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (targetElement) { // Defensive check
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        let scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (scrollToTopBtn) { // Defensive check
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    scrollToTopBtn.style.display = "block";
+                } else {
+                    scrollToTopBtn.style.display = "none";
+                }
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if there's a stored language preference, otherwise default to English
+            const storedLang = localStorage.getItem('selectedLanguage') || 'en';
+            const desktopSelect = document.getElementById('language-select');
+            const mobileSelect = document.getElementById('mobile-language-select');
+
+            if (desktopSelect) {
+                desktopSelect.value = storedLang;
+            }
+            if (mobileSelect) {
+                mobileSelect.value = storedLang;
+            }
+            changeLanguage(); // Apply initial language
+        });
+
+        // Add event listener to save language preference
+        const desktopLanguageSelect = document.getElementById('language-select');
+        if (desktopLanguageSelect) {
+            desktopLanguageSelect.addEventListener('change', function() {
+                localStorage.setItem('selectedLanguage', this.value);
+                changeLanguage();
+            });
+        }
+
+        const mobileLanguageSelect = document.getElementById('mobile-language-select');
+        if (mobileLanguageSelect) {
+            mobileLanguageSelect.addEventListener('change', function() {
+                localStorage.setItem('selectedLanguage', this.value);
+                changeLanguage();
+            });
+        }
+
+        // Gemini API Integration for AI Suggestion
+        const aiSuggestButton = document.getElementById('aiSuggestButton');
+        const messageForm = document.getElementById('message-form');
+        const aiSuggestionOutput = document.getElementById('aiSuggestionOutput');
+        const aiSuggestionText = document.getElementById('aiSuggestionText');
+        const aiLoadingIndicator = document.getElementById('aiLoadingIndicator');
+        const currentLangSpan = document.createElement('span'); // To hold current language text
+
+        if (aiSuggestButton && messageForm && aiSuggestionOutput && aiSuggestionText && aiLoadingIndicator) {
+            aiSuggestButton.addEventListener('click', async () => {
+                const userMessage = messageForm.value.trim();
+                const currentLang = document.documentElement.lang; // Get current display language
+
+                if (!userMessage) {
+                    // Display an in-app message instead of alert
+                    aiSuggestionOutput.classList.remove('hidden');
+                    aiSuggestionOutput.style.backgroundColor = '#fee2e2'; /* Light red for error */
+                    aiSuggestionText.textContent = currentLang === 'hi' ? 'कृपया अपनी आवश्यकता बताएं ताकि एआई सुझाव दे सके।' :
+                                                    currentLang === 'es' ? 'Por favor, describa su necesidad para que la IA pueda sugerir.' :
+                                                    currentLang === 'fr' ? 'Veuillez décrire votre besoin pour que l\'IA puisse suggérer.' :
+                                                    currentLang === 'de' ? 'Bitte beschreiben Sie Ihr Anliegen, damit die KI Vorschläge machen kann.' :
+                                                    'Please describe your needs for AI to suggest.';
+                    return;
+                }
+
+                // Show loading indicator
+                aiLoadingIndicator.classList.remove('hidden');
+                aiSuggestionOutput.classList.remove('hidden');
+                aiSuggestionOutput.style.backgroundColor = '#f0fdf4'; /* Back to light green for loading/success */
+                aiSuggestionText.textContent = ''; // Clear previous suggestion
+
+                const prompt = `The user is looking for lawn care and/or trash bin cleaning services in Leander, TX. They have provided the following description of their needs: "${userMessage}". Based on this, suggest relevant services from "Exceptional Lawn Mowing & Maintenance" and "Professional Trash Bin Cleaning & Sanitization". If the description is vague, ask clarifying questions to understand their needs better. Keep the response concise and helpful, no more than 150 words. Respond in the language indicated by the user's current page language, which is '${currentLang}'.`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvas will provide this at runtime
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`API error: ${response.status} ${response.statusText} - ${errorData.error.message}`);
+                    }
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        aiSuggestionText.textContent = text;
+                    } else {
+                        aiSuggestionText.textContent = currentLang === 'hi' ? 'सुझाव उत्पन्न नहीं किया जा सका। कृपया पुनः प्रयास करें।' :
+                                                        currentLang === 'es' ? 'No se pudo generar una sugerencia. Por favor, inténtelo de nuevo.' :
+                                                        currentLang === 'fr' ? 'Impossible de générer une suggestion. Veuillez réessayer.' :
+                                                        currentLang === 'de' ? 'Vorschlag konnte nicht generiert werden. Bitte versuchen Sie es erneut.' :
+                                                        'Could not generate a suggestion. Please try again.';
+                    }
+                } catch (error) {
+                    console.error('Error calling Gemini API:', error);
+                    aiSuggestionOutput.style.backgroundColor = '#fee2e2'; /* Light red for error */
+                    aiSuggestionText.textContent = currentLang === 'hi' ? 'सुझाव उत्पन्न करने में त्रुटि हुई। कृपया बाद में पुनः प्रयास करें।' :
+                                                    currentLang === 'es' ? 'Ocurrió un error al generar la sugerencia. Por favor, inténtelo de nuevo más tarde.' :
+                                                    currentLang === 'fr' ? 'Une erreur est survenue lors de la génération de la suggestion. Veuillez réessayer plus tard.' :
+                                                    currentLang === 'de' ? 'Beim Generieren des Vorschlags ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.' :
+                                                    'An error occurred while generating the suggestion. Please try again later.';
+                } finally {
+                    // Hide loading indicator
+                    aiLoadingIndicator.classList.add('hidden');
+                }
+            });
+        } else {
+            console.warn("One or more AI suggestion elements not found. AI feature may not work.");
+        }
+    </script>
+</body>
+</html>
